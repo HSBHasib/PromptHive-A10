@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import BannerContent from "./BannerContent";
 
 const Banner = () => {
   return (
-    <div>
-      Banner Section
-    </div>
-  )
-}
+    <>
+      <BannerContent />
+    </>
+  );
+};
 
-export default Banner
+export default Banner;
