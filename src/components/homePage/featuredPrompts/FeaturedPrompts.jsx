@@ -4,7 +4,7 @@ import FeaturedPromptCard from "./FeaturedPromptCard";
 import Link from "next/link";
 
 const FeaturedPrompts = ({ isUserLoggedIn = false }) => {
-  // Added dynamic thumbnail parameter link mapping to the dataset schema object safely
+  // Fake data
   const fakePromptsFromDB = [
     {
       _id: "p1",
@@ -99,7 +99,7 @@ const FeaturedPrompts = ({ isUserLoggedIn = false }) => {
   ];
 
   return (
-    <div className="bg-[#EFE2E2] my-13 py-12 px-6 w-full select-none">
+    <div className="bg-[#EFE2E2] my-13 py-14 px-6 w-full select-none">
       <div className="max-w-7xl mx-auto flex flex-col gap-8">
         {/* Header Section */}
         <div className="flex flex-row flex-wrap gap-2 items-end justify-between">

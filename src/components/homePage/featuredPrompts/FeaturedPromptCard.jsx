@@ -33,14 +33,21 @@ const FeaturedPromptCard = ({ prompt, idx, isUserLoggedIn }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 25 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: idx * 0.06, duration: 0.4, ease: "easeOut" }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ 
+        type: "spring",
+        stiffness: 100, 
+        damping: 20, 
+        mass: 1,
+        delay: idx * 0.08
+      }}
       className="bg-[#86707008] hover:bg-[#86707012] border border-[#86707015] hover:border-[#86707030] rounded-3xl p-5 flex flex-col justify-between min-h-85 shadow-sm hover:shadow-md transition-all duration-300 group h-full"
     >
       {/* Top Portion Details */}
       <div>
-        {/* Next.js Optimized Project Demo Thumbnail Area */}
+        {/* Prompt Image */}
         {thumbnail && (
           <div className="w-full h-44 relative rounded-2xl overflow-hidden mb-4 border border-[#86707015]">
             <Image

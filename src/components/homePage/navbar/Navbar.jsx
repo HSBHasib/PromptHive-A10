@@ -27,14 +27,14 @@ const Navbar = () => {
         </div>
 
         {/* Right Side: Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6 h-full">
+        <div className="hidden md:flex items-center gap-4 h-full">
           <ul className="flex items-center gap-3">
             {menuItems.map((item, idx) => (
               <li key={idx}>
                 <Link
                   href={item.href}
-                  className={`text-sm text-[#867070] font-medium px-3 rounded-2xl hover:border-b hover:border-[#86707095] hover:pb-1 transition-all duration-200 ease-in ${
-                    pathName === item.href && "border-b border-[#6B5656] text-[#6B5656] pb-1"
+                  className={`text-sm text-[#867070] font-medium px-4 py-2 rounded-lg hover:bg-[#86707015] transition-all duration-200 ease-in ${
+                    pathName === item.href && "bg-[#86707020]  text-[#6B5656]"
                   }`}
                 >
                   {item.link}
