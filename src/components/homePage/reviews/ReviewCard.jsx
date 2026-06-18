@@ -16,7 +16,6 @@ const ReviewCard = ({ review, idx }) => {
       initial={{ opacity: 0, y: 35 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      /* Using your signature ultra-smooth micro interaction spring bounce framework */
       transition={{
         type: "spring",
         stiffness: 100,
