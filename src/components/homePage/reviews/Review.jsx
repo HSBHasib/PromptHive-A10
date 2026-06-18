@@ -34,7 +34,7 @@ const Review = () => {
   ];
 
   return (
-    <div className="py-12 px-6 w-full select-none bg-[#F3E8E8]">
+    <div className="pt-10 pb-20 px-6 w-full select-none">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         
         {/* Central Layout Text Header Block matching your exact font weights */}
