@@ -35,7 +35,7 @@ const LoginContent = () => {
       }
 
       if (data) {
-        toast.success("Welcome back! Logged in successfully.");
+        toast.success("Welcome back! Logged in successful.");
         router.push("/"); 
       }
     } catch (error) {
