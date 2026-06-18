@@ -1,2 +1,45 @@
 @import "tailwindcss";
 @import "@heroui/styles";
+
+
+
+
+
+
+
+
+
+html, * {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(134, 112, 112, 0.3) #F5EBEB;
+}
+
+
+/* Scrollbar structure dimension controls */
+::-webkit-scrollbar {
+  width: 3px;  
+  height: 6px; 
+}
+
+/* Scrollbar tracking gutter platform layer behind the handle */
+::-webkit-scrollbar-track {
+  background: #F5EBEB; 
+}
+
+/* Draggable thumb bar element configuration shape */
+::-webkit-scrollbar-thumb {
+  background: rgba(134, 112, 112, 0.35); 
+  border-radius: 100px;                  
+  border: 1px solid #F5EBEB;             
+}
+
+/* Hover state dynamic parameter adjustments */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(134, 112, 112, 0.6); 
+}
+
+/* Active click state tactile micro adjustment */
+::-webkit-scrollbar-thumb:active {
+  background: #867070;                   
+}
+

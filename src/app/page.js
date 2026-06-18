@@ -16,8 +16,8 @@ const RootPage = () => {
       <Banner />
       <FeaturedPrompts />
       <WhyChooseUs />
-      <TopCreators />
       <StepsToMastery />
+      <TopCreators />
       <MultiPlatforms />
       <Review />
       <Footer />
