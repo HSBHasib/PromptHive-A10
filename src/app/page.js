@@ -18,8 +18,8 @@ const RootPage = () => {
       <WhyChooseUs />
       <StepsToMastery />
       <TopCreators />
-      <MultiPlatforms />
       <Review />
+      <MultiPlatforms />
       <Footer />
     </div>
   )
