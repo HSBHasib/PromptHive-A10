@@ -37,7 +37,7 @@ const RightSideContent = ({ data }) => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="lg:col-span-7 bg-[#86707008] border border-[#86707015] rounded-3xl p-6 shadow-sm flex flex-col gap-4 relative w-full h-115 justify-between"
+        className="lg:col-span-7 bg-[#86707008] border border-[#86707015] rounded-3xl p-6 shadow-sm flex flex-col gap-4 relative w-full h-auto sm:h-115 justify-between"
       >
         {/* Tab Switchers Layout */}
         <div className="flex justify-between items-center bg-[#86707010] p-1.5 rounded-xl border border-[#86707015] z-10">
@@ -68,7 +68,7 @@ const RightSideContent = ({ data }) => {
         </div>
 
         {/* Main Content Visualization Window  */}
-        <div className="flex-1 relative w-full h-full rounded-2xl overflow-hidden border border-[#86707015] bg-[#86707005] mt-2">
+        <div className="flex-1 relative w-full h-auto sm:h-full rounded-2xl overflow-hidden border border-[#86707015] bg-[#86707005] mt-2">
           <AnimatePresence mode="wait">
             {activeTab === "raw" ? (
               /* TAB 1: RAW CODE INPUT SIMULATOR VIEW */
@@ -78,12 +78,11 @@ const RightSideContent = ({ data }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="w-full h-full p-5 text-xs text-[#867070] leading-relaxed flex flex-col justify-between"
+                className="w-full h-full p-5 text-xs text-[#867070] leading-relaxed flex flex-col justify-between gap-6"
               >
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-1.5 text-[#867070] font-bold tracking-wider capitalize text-[13px]">
-                    <HiOutlineCommandLine size={20} /> Console Input Prompt
-                    Context
+                    <HiOutlineCommandLine size={20} /> Console Input Prompt Context
                   </div>
                   <p className="italic text-[#867070] bg-white/40 p-4 rounded-xl border border-[#86707010]  text-sm mt-1">
                     "/imagine prompt: A futuristic city with flying cars, neon
@@ -93,7 +92,7 @@ const RightSideContent = ({ data }) => {
                 </div>
 
                 {/* Faked skeletal terminal guidelines structure */}
-                <div className="flex flex-col gap-2 opacity-40">
+                <div className="flex flex-col gap-2 opacity-40 pb-4 sm:pb-0">
                   <div className="w-1/2 h-5 bg-[#86707060] rounded-lg" />
                   <div className="w-2/3 h-5 bg-[#86707060] rounded-lg" />
                 </div>
@@ -105,10 +104,10 @@ const RightSideContent = ({ data }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="w-full h-full grid grid-cols-1 sm:grid-cols-2"
+                className="w-full h-auto sm:h-full grid grid-cols-1 sm:grid-cols-2 overflow-visible sm:overflow-hidden"
               >
-                {/* JSON Code Area Segment */}
-                <div className="p-5 text-[11px] font-medium text-[#867070] leading-relaxed bg-[#86707010]/30 overflow-y-auto whitespace-pre border-r border-[#86707015] relative group/json">
+                {/* JSON Code Area Segment - Modified height to auto & overflow-visible on mobile viewports */}
+                <div className="p-5 text-[11px] font-medium text-[#867070] leading-relaxed bg-[#86707010]/30 overflow-y-visible sm:overflow-y-auto overflow-x-hidden whitespace-pre-wrap border-r border-[#86707015] relative group/json h-auto sm:h-full">
                   {/* Top Bar Header Area Containment Including Interactive Copy Action Button */}
                   <div className="flex items-center justify-between mb-3 w-full">
                     <div className="text-[11px] font-bold text-[#867070] tracking-wider uppercase flex items-center gap-1">
@@ -146,7 +145,7 @@ const RightSideContent = ({ data }) => {
                 </div>
 
                 {/* Generated Production Output Image View */}
-                <div className="relative w-full h-full bg-[#86707020]">
+                <div className="relative w-full h-[240px] sm:h-full bg-[#86707020]">
                   <Image
                     src={data.demoImage}
                     alt="Engineed Output Showcase"

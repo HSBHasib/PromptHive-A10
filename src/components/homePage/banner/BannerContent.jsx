@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const BannerContent = ({ searchQuery, setSearchQuery, handleSearchSubmit }) => {
-  // Trending tags as per specification requirements
+  // Trending tags
   const trendingTags = ["#ChatGPT", "#Midjourney", "#Claude", "#Gemini"];
 
   return (
@@ -64,6 +64,7 @@ const BannerContent = ({ searchQuery, setSearchQuery, handleSearchSubmit }) => {
                 className="bg-transparent w-full"
                 fullWidth
                 name="search"
+                aria-label="Search prompts marketplace directory by keyword, tools, or tag metadata parameters"
               >
                 <SearchField.Group className="bg-transparent border-none shadow-none text-[#867070] focus-within:ring-0">
                   <SearchField.SearchIcon className="text-[#867070]" />
@@ -125,3 +126,4 @@ const BannerContent = ({ searchQuery, setSearchQuery, handleSearchSubmit }) => {
 };
 
 export default BannerContent;
+
