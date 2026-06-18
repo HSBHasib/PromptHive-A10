@@ -21,8 +21,13 @@ const Navbar = () => {
       <nav className="max-w-7xl mx-auto flex items-center justify-between h-16">
         {/* Left Side: Logo */}
         <div className="flex items-center">
-          <Link href="/" className="flex items-center transition-opacity hover:opacity-90">
-            <h1 className="text-[#867070] hover:text-[#6B5656] font-bold text-xl">PromptHive</h1>
+          <Link
+            href="/"
+            className="flex items-center transition-opacity hover:opacity-90"
+          >
+            <h1 className="text-[#867070] hover:text-[#6B5656] font-bold text-xl">
+              PromptHive
+            </h1>
           </Link>
         </div>
 
@@ -48,17 +53,13 @@ const Navbar = () => {
             <span className="text-[#86707070] text-xl">|</span>
             <Link
               className="text-sm font-semibold text-[#867070] hover:text-[#6B5656] hover:underline transition-colors"
-              href="/auth/signin"
+              href="/auth/login"
             >
               Login
             </Link>
 
-            <Button 
-              as={Link}
-              href="/auth/signup"
-              className="bg-[#867070] hover:bg-[#705C5C] text-white font-semibold text-sm px-6 h-10 rounded-xl transition-all duration-200 active:scale-95 shadow-md"
-            >
-              Register
+            <Button className="bg-[#867070] hover:bg-[#705C5C] text-white font-semibold text-sm px-6 h-10 rounded-xl transition-all duration-200 active:scale-95 shadow-md">
+              <Link href="/auth/register">Register</Link>
             </Button>
           </div>
         </div>

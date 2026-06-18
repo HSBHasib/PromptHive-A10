@@ -9,7 +9,7 @@ const BannerContent = ({ searchQuery, setSearchQuery, handleSearchSubmit }) => {
   const trendingTags = ["#ChatGPT", "#Midjourney", "#Claude", "#Gemini"];
 
   return (
-    <div className=" relative max-h-screen flex items-center justify-center px-4 py-10 overflow-hidden select-none">
+    <div className=" relative max-h-screen flex items-center justify-center px-4 py-14 overflow-hidden select-none">
       {/* Decorative Wave Background Graphic */}
       <div className="absolute inset-x-0 bottom-0 pointer-events-none opacity-70">
         <svg
