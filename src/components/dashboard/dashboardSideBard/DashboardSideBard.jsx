@@ -16,7 +16,9 @@ import {
   HiOutlineCog6Tooth,
   HiOutlineBars3,
 } from "react-icons/hi2";
+import { GoReport } from "react-icons/go";
 import { MdOutlinePayments } from "react-icons/md";
+import { TbBrandGoogleAnalytics } from "react-icons/tb";
 import { FiUsers } from "react-icons/fi";
 import { LuLayoutDashboard, LuSettings } from "react-icons/lu";
 
@@ -25,12 +27,17 @@ export default function DashboardSideBar() {
   const user = session?.user;
   const role = user?.role || "user";
 
-  const [activeTab, setActiveTab] = useState(`/dashboard/${role}`);
+  const [activeTab, setActiveTab] = useState(`/dashboard/${role}/profile`);
   const pathName = usePathname();
 
   // Admin NavLinks
   const adminNavLinks = [
-    { icon: LuLayoutDashboard, href: "/dashboard/admin", label: "Dashboard" },
+    {
+      icon: HiOutlineUser,
+      href: "/dashboard/admin/profile",
+      label: "Profile",
+    },
+    { icon: TbBrandGoogleAnalytics, href: "/dashboard/admin/admin-analytics", label: "Admin Analytics" },
     { icon: FiUsers, href: "/dashboard/admin/users", label: "All Users" },
     {
       icon: HiOutlineDocumentPlus,
@@ -42,12 +49,21 @@ export default function DashboardSideBar() {
       href: "/dashboard/admin/payments",
       label: "All Payments",
     },
-    { icon: LuSettings, href: "/dashboard/admin/settings", label: "Settings" },
+    { icon: GoReport, href: "/dashboard/admin/reported-prompts", label: "Reported Prompts" },
   ];
 
   //   Creator NavLinks
   const creatorNavLinks = [
-    { icon: LuLayoutDashboard, href: "/dashboard/creator", label: "Analytics" },
+    {
+      icon: HiOutlineUser,
+      href: "/dashboard/creator/profile",
+      label: "Profile",
+    },
+    {
+      icon: LuLayoutDashboard,
+      href: "/dashboard/creator/settings",
+      label: "Creator Home",
+    },
     {
       icon: HiOutlineDocumentPlus,
       href: "/dashboard/creator/add-prompt",
@@ -57,11 +73,6 @@ export default function DashboardSideBar() {
       icon: HiOutlineTableCells,
       href: "/dashboard/creator/my-prompts",
       label: "My Prompts",
-    },
-    {
-      icon: LuSettings,
-      href: "/dashboard/creator/settings",
-      label: "Settings",
     },
   ];
 
@@ -87,11 +98,6 @@ export default function DashboardSideBar() {
       icon: HiOutlineChatBubbleLeftRight,
       href: "/dashboard/user/my-reviews",
       label: "My Reviews",
-    },
-    {
-      icon: HiOutlineCog6Tooth,
-      href: "/dashboard/user/settings",
-      label: "Settings",
     },
   ];
 
@@ -129,7 +135,7 @@ export default function DashboardSideBar() {
           </div>
         </div>
       ) : (
-        <div className="mb-7 px-2 flex flex-col items-start gap-3 border-b border-[#86707020] pb-6 w-full">
+        <div className="mb-5 px-2 flex flex-col items-start gap-3 border-b border-[#86707020] pb-6 w-full">
           <div className="flex items-center gap-3 min-w-0 w-full">
             <Avatar className="shrink-0 border border-[#86707025] bg-[#86707010]">
               <Avatar.Image

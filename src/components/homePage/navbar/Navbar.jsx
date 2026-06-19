@@ -17,7 +17,9 @@ const Navbar = () => {
   // User Session
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
+  const role = user?.role || "user";
 
+  // Check User Status
   const isBlocked = user?.status === "block";
 
   // SignOur Func
@@ -39,15 +41,13 @@ const Navbar = () => {
 
   // Dashbaord Links based on role
   const dashboardLinks = {
-    admin: "/dashboard/admin",
-    user: "/dashboard/user",
-    creator: "/dashboard/creator",
+    [role] : `/dashboard/${role}/profile`
   };
 
   if (user?.email && !isBlocked) {
     menuItems.push({
       link: "Dashboard",
-      href: dashboardLinks[user?.role || "user"],
+      href: dashboardLinks[role],
     });
   }
 
