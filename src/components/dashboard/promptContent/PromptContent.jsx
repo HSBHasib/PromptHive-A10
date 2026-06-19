@@ -12,8 +12,8 @@ import {
   LuTrash2,
 } from "react-icons/lu";
 import { FaRegEye } from "react-icons/fa";
-import { BiEditAlt } from "react-icons/bi";
 import Image from "next/image";
+import UpdatedPromptContainer from "./UpdatedPrompt";
 
 const columns = [
   {
@@ -39,7 +39,7 @@ const statusColorMap = {
   rejected: { className: "bg-rose-100/80 border-rose-300 text-rose-700" },
 };
 
-const PromptContent = ({ prompts, currentPage }) => {
+const PromptContent = ({ prompts, currentPage, updatePrompt }) => {
   const router = useRouter();
 
   const handlePageChange = (newPage) => {
@@ -196,6 +196,7 @@ const PromptContent = ({ prompts, currentPage }) => {
                       {/* Actions */}
                       <Table.Cell className="text-center py-4">
                         <div className="flex items-center justify-center gap-1">
+                          {/* View */}
                           <Button
                             isIconOnly
                             size="sm"
@@ -208,10 +209,11 @@ const PromptContent = ({ prompts, currentPage }) => {
                               )
                             }
                           >
-                            <FaRegEye  size={16} />
+                            <FaRegEye size={16} />
                           </Button>
 
-                          <Button
+                          {/* Edit Button */}
+                          {/* <Button
                             isIconOnly
                             size="sm"
                             variant="light"
@@ -224,8 +226,15 @@ const PromptContent = ({ prompts, currentPage }) => {
                             }
                           >
                             <BiEditAlt size={18} />
-                          </Button>
+                          </Button> */}
+                          <UpdatedPromptContainer
+                            promptData={item}
+                            onUpdateSuccess={() => {
+                              router.refresh(); 
+                            }}
+                          />
 
+                          {/* Delete Button */}
                           <Button
                             isIconOnly
                             size="sm"
