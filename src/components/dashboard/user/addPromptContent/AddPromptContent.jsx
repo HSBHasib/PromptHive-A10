@@ -29,10 +29,16 @@ const aiTools = [
   { key: "Gemini", label: "Gemini" },
 ];
 
-const AddPromptContent = () => {
+const AddPromptContent = ({user}) => {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  // User Id
+  const userId = user?.id;
+
+  console.log('user data is - ',user)
 
   // React Hook Form
   const {
@@ -104,6 +110,7 @@ const AddPromptContent = () => {
         thumbnail: uploadedImageUrl,
         copyCount: 0,
         status: "pending",
+        userId,
       };
 
       const res = await createPrompt(finalData);

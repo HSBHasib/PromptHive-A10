@@ -110,7 +110,7 @@ export default function DashboardSideBar() {
   const navItems = navLinkMap[role];
 
   const sideBarContent = (
-    <div className="flex flex-col h-full bg-[#F5EBEB] lg:p-5 w-full text-[#867070]">
+    <div className="flex flex-col h-full bg-[#EFE2E2] lg:p-5 w-full text-[#867070]">
       {/* Brand Header Logo */}
       <div className="hidden lg:block mb-6 px-2">
         <Link
