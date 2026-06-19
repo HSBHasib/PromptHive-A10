@@ -9,11 +9,11 @@ import {
   LuChevronRight,
   LuEye,
   LuEyeOff,
-  LuTrash2,
 } from "react-icons/lu";
 import { FaRegEye } from "react-icons/fa";
 import Image from "next/image";
 import UpdatedPromptContainer from "./UpdatedPrompt";
+import DeleteDialogContainer from "./DeleteDialog";
 
 const columns = [
   {
@@ -39,7 +39,7 @@ const statusColorMap = {
   rejected: { className: "bg-rose-100/80 border-rose-300 text-rose-700" },
 };
 
-const PromptContent = ({ prompts, currentPage, updatePrompt }) => {
+const PromptContent = ({ userId, prompts, currentPage }) => {
   const router = useRouter();
 
   const handlePageChange = (newPage) => {
@@ -213,40 +213,21 @@ const PromptContent = ({ prompts, currentPage, updatePrompt }) => {
                           </Button>
 
                           {/* Edit Button */}
-                          {/* <Button
-                            isIconOnly
-                            size="sm"
-                            variant="light"
-                            title="Edit / Update"
-                            className="text-[#867070] hover:text-amber-600 hover:bg-amber-500/10 rounded-xl w-8 h-8 min-w-0 transition-all duration-200"
-                            onClick={() =>
-                              router.push(
-                                `/dashboard/my-prompts/update/${item?._id}`,
-                              )
-                            }
-                          >
-                            <BiEditAlt size={18} />
-                          </Button> */}
                           <UpdatedPromptContainer
                             promptData={item}
                             onUpdateSuccess={() => {
-                              router.refresh(); 
+                              router.refresh();
                             }}
                           />
 
                           {/* Delete Button */}
-                          <Button
-                            isIconOnly
-                            size="sm"
-                            variant="light"
-                            title="Delete"
-                            className="text-[#867070] hover:text-rose-600 hover:bg-rose-500/10 rounded-xl w-8 h-8 min-w-0 transition-all duration-200"
-                            onClick={() =>
-                              console.log("Delete trigger id:", item?._id)
-                            }
-                          >
-                            <LuTrash2 size={15} />
-                          </Button>
+                          <DeleteDialogContainer
+                            promptId={item?._id}
+                            promptTitle={item?.title}
+                            onDeleteSuccess={() => {
+                              router.refresh();
+                            }}
+                          />
                         </div>
                       </Table.Cell>
                     </Table.Row>

@@ -6,17 +6,20 @@ export const serverFetch = async (path) => {
   return res.json()
 };
 
-
 // Server Mutation
 export const serverMutation = async (path, data, method = "POST") => {
-  const res = await fetch(`${baseUrl}${path}`, {
+  const options = {
     method: method,
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
-  });
+  }
 
+  if (data !== null && data !== undefined) {
+    options.body = JSON.stringify(data);
+  }
+  
+  const res = await fetch(`${baseUrl}${path}`, options);
   return res.json();
 };
 

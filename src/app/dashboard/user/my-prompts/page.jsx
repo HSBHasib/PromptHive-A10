@@ -5,12 +5,13 @@ import { getUserSession } from "@/lib/core/session";
 
 const UserPromptsData = async ({ searchParams }) => {
   const user = await getUserSession();
+  const userId = user?.id || "user";
 
   const resolvedSearchParams = await searchParams;
   const currentPage = resolvedSearchParams?.page || "1";
 
-  const prompts = (await getPrompts(user?.id, currentPage)) || [];
-  
+  const prompts = (await getPrompts(userId, currentPage)) || [];
+
   return (
     <div className="p-4">
       <div className="mb-6">
