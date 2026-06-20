@@ -6,31 +6,36 @@ import toast from "react-hot-toast";
 import { uploadImageToImgBB } from "@/lib/core/ImageBB";
 import { createPrompt } from "@/lib/action/prompts";
 import PromptForm from "../../promptForm/PromptForm";
+import { useRouter } from "next/navigation";
 
 const AddPromptContent = ({ user }) => {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
-  // User Id
+  
+  // User Id and Role
   const userId = user?.id;
-
-  console.log('user data is - ', user)
+  const role = user?.role || "user";
 
   // 💡 React Hook Form onSubmit handler
   const onFormSubmit = async (formData) => {
     setIsSubmitting(true);
 
     if (!formData.category) {
+      toast.error("Please select a category!");
       setIsSubmitting(false);
       return;
     }
 
     if (!formData.aiTool) {
+      toast.error("Please select an AI Tool!");
       setIsSubmitting(false);
       return;
     }
     if (!imageFile) {
+      toast.error("Please upload a thumbnail image!");
       setIsSubmitting(false);
       return;
     }
@@ -48,6 +53,7 @@ const AddPromptContent = ({ user }) => {
         ...formData,
         thumbnail: uploadedImageUrl,
         copyCount: 0,
+        rating: 0,
         status: "pending",
         userId,
       };
@@ -58,6 +64,7 @@ const AddPromptContent = ({ user }) => {
         setImageFile(null);
         setImagePreview(null);
         toast.success("Prompt submitted successful!");
+        router.push(`/dashboard/${role}/my-prompts`)
       }
     } catch (error) {
       toast.error("Something went wrong during submission", {
