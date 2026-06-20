@@ -6,8 +6,15 @@ export const getTrendingPrompts = async () => {
 }
 
 
-// Get Prompts Based on user 
-export const getPrompts = async (userId = "", page = 1) => {
-    return serverFetch(`/api/prompts?userId=${userId}&page=${page}`);
-}
+
+// Get Prompts Based on multiple things
+export const getPrompts = async (queryString = "") => {
+  return serverFetch(`/api/prompts${queryString ? `?${queryString}` : ""}`);
+};
+
+
+// // Get Prompts Based on user 
+// export const getPrompts = async (userId = "", page = 1) => {
+//     return serverFetch(`/api/prompts?userId=${userId}&page=${page}`);
+// }
 

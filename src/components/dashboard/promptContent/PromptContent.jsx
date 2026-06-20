@@ -39,7 +39,7 @@ const statusColorMap = {
   rejected: { className: "bg-rose-100/80 border-rose-300 text-rose-700" },
 };
 
-const PromptContent = ({ userId, prompts, currentPage }) => {
+const PromptContent = ({ prompts, totalPrompts, currentPage }) => {
   const router = useRouter();
 
   const handlePageChange = (newPage) => {
@@ -96,13 +96,27 @@ const PromptContent = ({ userId, prompts, currentPage }) => {
                 </Table.Header>
 
                 <Table.Body
-                  items={prompts}
+                  items={prompts?.data}
                   emptyContent={
-                    <div className="flex flex-col items-center justify-center p-16 gap-2 min-h-[250px] bg-[#EEEDEE] rounded-xl w-full">
-                      <LuTerminal size={32} className="text-[#867070]/60" />
-                      <p className="text-sm font-semibold text-[#867070]">
-                        No prompts found on this page.
-                      </p>
+                    <div className="flex flex-col items-center justify-center p-16 gap-3 min-h-[300px] bg-[#EEEDEE]/50 border border-dashed border-[#867070]/30 rounded-2xl w-full">
+                      <div className="bg-[#e6d8d8] p-4 rounded-full">
+                        <LuTerminal size={32} className="text-[#867070]" />
+                      </div>
+                      <div className="text-center">
+                        <h3 className="text-lg font-bold text-[#403535]">
+                          No prompts found
+                        </h3>
+                        <p className="text-sm text-[#867070] mt-1">
+                          You haven't created any prompts yet, or this page is
+                          empty.
+                        </p>
+                      </div>
+                      <Button
+                        className="mt-2 bg-[#867070] text-white font-bold px-6 py-2 rounded-xl"
+                        onClick={() => router.push("/dashboard/create-prompt")}
+                      >
+                        Create New Prompt
+                      </Button>
                     </div>
                   }
                 >
@@ -240,7 +254,7 @@ const PromptContent = ({ userId, prompts, currentPage }) => {
       </div>
 
       {/* Pagination */}
-      {prompts.length > 0 && (
+      {totalPrompts > 0 && (
         <div className="w-full flex items-center justify-end mt-2">
           <div className="flex items-center gap-2 bg-[#f3e7e7] p-1 rounded-xl border border-[#867070]/25 shadow-sm">
             <button
@@ -270,3 +284,4 @@ const PromptContent = ({ userId, prompts, currentPage }) => {
 };
 
 export default PromptContent;
+

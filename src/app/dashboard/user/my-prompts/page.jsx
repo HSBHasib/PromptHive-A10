@@ -10,7 +10,16 @@ const UserPromptsData = async ({ searchParams }) => {
   const resolvedSearchParams = await searchParams;
   const currentPage = resolvedSearchParams?.page || "1";
 
-  const prompts = (await getPrompts(userId, currentPage)) || [];
+  const queryObj = {
+    userId: userId,
+    page: currentPage,
+    limit: "4",
+  };
+
+  const queryString = new URLSearchParams(queryObj).toString();
+
+  const prompts = (await getPrompts(queryString)) || { data: [], total: 0 };
+  const total = prompts?.data.length;
 
   return (
     <div className="p-4">
@@ -21,7 +30,7 @@ const UserPromptsData = async ({ searchParams }) => {
         </p>
       </div>
 
-      <PromptContent prompts={prompts} currentPage={parseInt(currentPage)} />
+      <PromptContent prompts={prompts} totalPrompts={total} currentPage={parseInt(currentPage)} />
     </div>
   );
 };
