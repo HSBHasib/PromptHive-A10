@@ -9,13 +9,17 @@ import { FiUpload } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { uploadImageToImgBB } from "@/lib/core/ImageBB";
+import { router } from "better-auth/api";
+import { useRouter } from "next/navigation";
 
 const RegisterContent = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const router = useRouter();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm();
 
@@ -33,7 +37,7 @@ const RegisterContent = () => {
       }
 
       const imageFile = fileList[0];
-      const uploadedPhotoURL = uploadImageToImgBB(imageFile);
+      const uploadedPhotoURL = await uploadImageToImgBB(imageFile);
 
       if (!uploadedPhotoURL) {
         toast.error("Image upload failed. Please try again.");
@@ -51,20 +55,21 @@ const RegisterContent = () => {
         plan: "free"
       });
 
+
+
       // If Any error catch
       if (error) {
-        console.error("BetterAuth Error Details: ", error);
         toast.error(error.message || "Failed to create account.");
         return;
       }
 
       // After successfully register
       if (data) {
-        console.log("success data is - ", data);
+        reset(),
+        router.push("/auth/login")
         toast.success("Account created successfully!");
       }
     } catch (error) {
-      console.error("Catch Block Error: ", error);
       toast.error("Something went wrong during the registration process.");
     }
   };
@@ -241,7 +246,7 @@ const RegisterContent = () => {
         <p className="text-center text-sm text-[#867070]/80 mt-6">
           Already have an account?{" "}
           <a
-            href="/login"
+            href="/auth/login"
             className="font-semibold text-[#867070] hover:underline"
           >
             Log In

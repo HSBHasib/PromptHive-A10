@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Avatar, Skeleton, Button, Drawer } from "@heroui/react";
-
 import {
   HiOutlineUser,
   HiOutlineDocumentPlus,
@@ -81,7 +80,7 @@ export default function DashboardSideBar() {
     },
     {
       icon: LuLayoutDashboard,
-      href: "/dashboard/creator/settings",
+      href: "/dashboard/creator/home",
       label: "Creator Home",
     },
     {
@@ -238,7 +237,7 @@ export default function DashboardSideBar() {
               placement="left"
               className="drawer__content fixed top-0 bottom-0 left-0 w-60 z-50 h-screen bg-[#F5EBEB] border-r border-[#86707015] outline-none"
             >
-              <Drawer.Dialog className="drawer__dialog h-full w-full bg-[#F5EBEB] flex flex-col relative">
+              <Drawer.Dialog className="drawer__dialog h-full w-full bg-[#EFE2E2] flex flex-col relative">
                 <Drawer.CloseTrigger
                   className="drawer__close-trigger absolute top-4 right-4 text-[#86707075] hover:text-[#867070] z-50 focus:outline-none cursor-pointer"
                   aria-label="Close panel navigation"

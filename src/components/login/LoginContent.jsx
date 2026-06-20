@@ -161,7 +161,7 @@ const LoginContent = () => {
         <p className="text-center text-sm text-[#867070]/80 mt-6">
           Don't have an account?{" "}
           <a
-            href="/register"
+            href="/auth/register"
             className="font-semibold text-[#867070] hover:underline"
           >
             Register
