@@ -25,7 +25,6 @@ export default function DashboardSideBar() {
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
   const role = user?.role || "user";
-  const route = useRouter()
 
   // SignOur Func
   const handleSignOut = async () => {
@@ -53,7 +52,7 @@ export default function DashboardSideBar() {
       href: "/dashboard/admin/admin-analytics",
       label: "Admin Analytics",
     },
-    { icon: FiUsers, href: "/dashboard/admin/users", label: "All Users" },
+    { icon: FiUsers, href: "/dashboard/admin/all-users", label: "All Users" },
     {
       icon: HiOutlineDocumentPlus,
       href: "/dashboard/admin/prompts",

@@ -11,7 +11,7 @@ const AllPromptsPage = async ({ searchParams }) => {
   const queryString = querySearch.toString();
 
   const response = await getPrompts(queryString);
-  const users = await getUsers() || [];
+  const { data:users } = await getUsers() || [];
   const userSession = await getUserSession();
 
   const prompts = {

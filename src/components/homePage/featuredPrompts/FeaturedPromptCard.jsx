@@ -22,8 +22,11 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
     rating,
     price,
     thumbnail,
+    userId,
     _id,
   } = prompt || {};
+
+  const filterUser = user.filter((u) => u._id === userId);
 
   const targetDetailsRoute = isUserLoggedIn
     ? `/prompts/${_id}`
@@ -120,29 +123,25 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
 
         {/* Avatar and view button */}
         <div className="flex items-center justify-between gap-2 w-full">
-          <div className="flex items-center gap-2.5 min-w-0">
-            {user?.map((creator, idx) => (
-              <div key={idx}>
-                <Avatar
-                  className="w-8 h-8 rounded-full border border-[#86707030] bg-[#86707010] flex-shrink-0 text-[11px] font-bold text-[#867070]"
-                >
-                  {creator?.image && (
-                    <Avatar.Image
-                      src={creator.image}
-                      alt={creator.name || "User Avatar"}
-                      className="object-cover w-full h-full"
-                    />
-                  )}
-                  <Avatar.Fallback>
-                    {creator?.name ? creator.name.charAt(0).toUpperCase() : "U"}
-                  </Avatar.Fallback>
-                </Avatar>
-                <span className="text-xs font-bold text-[#867070] truncate max-w-[90px] sm:max-w-[110px]">
-                  @{creator?.name}
-                </span>
-              </div>
-            ))}
-          </div>
+          {filterUser?.map((creator, idx) => (
+            <div key={idx} className="flex items-center gap-2.5 min-w-0">
+              <Avatar className="w-8 h-8 rounded-full border border-[#86707030] bg-[#86707010] flex-shrink-0 text-[11px] font-bold text-[#867070]">
+                {creator?.image && (
+                  <Avatar.Image
+                    src={creator.image}
+                    alt={creator.name || "User Avatar"}
+                    className="object-cover w-full h-full"
+                  />
+                )}
+                <Avatar.Fallback>
+                  {creator?.name ? creator.name.charAt(0).toUpperCase() : "U"}
+                </Avatar.Fallback>
+              </Avatar>
+              <span className="text-xs font-bold text-[#867070] truncate max-w-[90px] sm:max-w-[110px]">
+                @{creator?.name}
+              </span>
+            </div>
+          ))}
 
           <Button className="bg-[#867070] hover:bg-[#705C5C] text-white font-bold text-xs h-9 px-4 rounded-xl transition-all duration-200 shadow-sm active:scale-95">
             <Link href={targetDetailsRoute}>View Details</Link>

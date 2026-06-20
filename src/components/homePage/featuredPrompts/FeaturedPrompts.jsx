@@ -10,7 +10,7 @@ const FeaturedPrompts = async () => {
   const userSession = await getUserSession();
   
   const trendingPrompts = await getTrendingPrompts() || [];
-  const user = await getUsers()
+  const { data: user } = await getUsers()
 
   return (
     <div className="bg-[#EFE2E2] my-13 py-14 px-6 w-full select-none">
