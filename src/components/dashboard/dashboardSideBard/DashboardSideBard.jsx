@@ -1,31 +1,43 @@
 "use client";
 
 import React, { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { authClient } from "@/lib/auth-client";
 import { Avatar, Skeleton, Button, Drawer } from "@heroui/react";
 
-// Strict React Icons Implementation
 import {
   HiOutlineUser,
   HiOutlineDocumentPlus,
   HiOutlineTableCells,
   HiOutlineBookmark,
   HiOutlineChatBubbleLeftRight,
-  HiOutlineCog6Tooth,
   HiOutlineBars3,
 } from "react-icons/hi2";
 import { GoReport } from "react-icons/go";
 import { MdOutlinePayments } from "react-icons/md";
 import { TbBrandGoogleAnalytics } from "react-icons/tb";
 import { FiUsers } from "react-icons/fi";
-import { LuLayoutDashboard, LuSettings } from "react-icons/lu";
+import { LuLayoutDashboard, LuLogOut } from "react-icons/lu";
+import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
+
 
 export default function DashboardSideBar() {
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
   const role = user?.role || "user";
+  const route = useRouter()
+
+  // SignOur Func
+  const handleSignOut = async () => {
+    try {
+      await authClient.signOut();
+      toast.success("Logged out successfully!", { duration: 1500 });
+      window.location.reload(); 
+    } catch (err) {
+      toast.error("Logout runtime error.");
+    }
+  };
 
   const [activeTab, setActiveTab] = useState(`/dashboard/${role}/profile`);
   const pathName = usePathname();
@@ -37,7 +49,11 @@ export default function DashboardSideBar() {
       href: "/dashboard/admin/profile",
       label: "Profile",
     },
-    { icon: TbBrandGoogleAnalytics, href: "/dashboard/admin/admin-analytics", label: "Admin Analytics" },
+    {
+      icon: TbBrandGoogleAnalytics,
+      href: "/dashboard/admin/admin-analytics",
+      label: "Admin Analytics",
+    },
     { icon: FiUsers, href: "/dashboard/admin/users", label: "All Users" },
     {
       icon: HiOutlineDocumentPlus,
@@ -49,7 +65,11 @@ export default function DashboardSideBar() {
       href: "/dashboard/admin/payments",
       label: "All Payments",
     },
-    { icon: GoReport, href: "/dashboard/admin/reported-prompts", label: "Reported Prompts" },
+    {
+      icon: GoReport,
+      href: "/dashboard/admin/reported-prompts",
+      label: "Reported Prompts",
+    },
   ];
 
   //   Creator NavLinks
@@ -185,6 +205,10 @@ export default function DashboardSideBar() {
           );
         })}
       </nav>
+
+      <button onClick={handleSignOut} className="flex justify-center items-center justify-between rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 gap-1.5 bg-[#867070]/90 text-white hover:bg-[#867070] cursor-pointer shadow-sm">
+        <LuLogOut size={16} /> Logout
+      </button>
     </div>
   );
 

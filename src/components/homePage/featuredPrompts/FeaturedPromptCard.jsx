@@ -122,9 +122,8 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
         <div className="flex items-center justify-between gap-2 w-full">
           <div className="flex items-center gap-2.5 min-w-0">
             {user?.map((creator, idx) => (
-              <>
+              <div key={idx}>
                 <Avatar
-                  key={idx}
                   className="w-8 h-8 rounded-full border border-[#86707030] bg-[#86707010] flex-shrink-0 text-[11px] font-bold text-[#867070]"
                 >
                   {creator?.image && (
@@ -141,7 +140,7 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
                 <span className="text-xs font-bold text-[#867070] truncate max-w-[90px] sm:max-w-[110px]">
                   @{creator?.name}
                 </span>
-              </>
+              </div>
             ))}
           </div>
 
