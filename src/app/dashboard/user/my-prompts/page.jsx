@@ -5,7 +5,7 @@ import { getUserSession } from "@/lib/core/session";
 
 const UserPromptsData = async ({ searchParams }) => {
   const user = await getUserSession();
-  const userId = user?.id || "user";
+  const userId = user?.id;
 
   const resolvedSearchParams = await searchParams;
   const currentPage = resolvedSearchParams?.page || "1";

@@ -48,6 +48,7 @@ const RegisterContent = () => {
         image: uploadedPhotoURL,
         role: "user",
         status: "active",
+        plan: "free"
       });
 
       // If Any error catch
