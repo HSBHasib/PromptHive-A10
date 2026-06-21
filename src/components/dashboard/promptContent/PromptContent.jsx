@@ -16,6 +16,8 @@ import { FaRegEye } from "react-icons/fa";
 import Image from "next/image";
 import UpdatedPromptContainer from "./UpdatedPrompt";
 import DeleteDialogContainer from "./DeleteDialog";
+import toast from "react-hot-toast";
+import { updatePrompt } from "@/lib/action/prompts";
 
 const statusColorMap = {
   pending: { className: "bg-amber-100/30 border-amber-300 text-amber-700" },
@@ -33,7 +35,6 @@ const PromptContent = ({
   isAdmin = false,
 }) => {
   const router = useRouter();
-  console.log("users data is - ", users);
 
   const getColumns = () => {
     const cols = [
@@ -116,6 +117,19 @@ const PromptContent = ({
       day: "numeric",
       year: "numeric",
     });
+  };
+
+  const handleStatusUpdate = async (promptId, newStatus) => {
+    try {
+      const result = await updatePrompt(promptId, { status: newStatus });
+
+      if (result) {
+        toast.success(`Prompt status updated to ${newStatus}`);
+        router.refresh();
+      }
+    } catch (error) {
+      toast.error("Failed to update status");
+    }
   };
 
   return (
@@ -234,48 +248,53 @@ const PromptContent = ({
                         </Chip>
                       </Table.Cell>
 
+                      {/* Actions */}
                       <Table.Cell className="text-center">
                         <div className="flex items-center justify-center gap-1.5">
                           <div>
-
-                          <Button
-                            isIconOnly
-                            size="sm"
-                            variant="light"
-                            onClick={() =>
-                              router.push(
-                                `/dashboard/my-prompts/analytics/${item?._id}`,
-                              )
-                            }
-                            className="text-[#867070] hover:text-sky-600 hover:bg-sky-100 bg-sky-50"
-                          >
-                            <FaRegEye size={16} />
-                          </Button>
+                            <Button
+                              isIconOnly
+                              size="sm"
+                              variant="light"
+                              onClick={() =>
+                                router.push(
+                                  `/dashboard/my-prompts/analytics/${item?._id}`,
+                                )
+                              }
+                              className="text-[#867070] hover:text-sky-600 hover:bg-sky-100 bg-sky-50"
+                            >
+                              <FaRegEye size={16} />
+                            </Button>
                           </div>
                           {isAdmin ? (
                             <>
-                            <div>
-
-                              <Button
-                                isIconOnly
-                                size="sm"
-                                variant="light"
-                                className="text-emerald-600 hover:bg-emerald-500/10 bg-emerald-500/5 "
-                              >
-                                <LuCheck size={18} />
-                              </Button>
-                            </div>
-                            <div>
-
-                              <Button
-                                isIconOnly
-                                size="sm"
-                                variant="light"
-                                className="text-rose-600 hover:bg-rose-500/10 bg-rose-500/5"
-                              >
-                                <LuX size={18} />
-                              </Button>
-                            </div>
+                              <div>
+                                {item.status !== "approved" && (
+                                  <Button
+                                    isIconOnly
+                                    size="sm"
+                                    variant="light"
+                                    className="text-emerald-600 hover:bg-emerald-500/10 bg-emerald-500/5"
+                                    onClick={() =>
+                                      handleStatusUpdate(item._id, "approved")
+                                    }
+                                  >
+                                    <LuCheck size={18} />
+                                  </Button>
+                                )}
+                              </div>
+                              <div>
+                                {item.status !== "rejected" && (
+                                  <Button
+                                    isIconOnly
+                                    size="sm"
+                                    variant="light"
+                                    className="text-rose-600 hover:bg-rose-500/10 bg-rose-500/5"
+                                  >
+                                    <LuX size={18} />
+                                  </Button>
+                                )}
+                              </div>
                             </>
                           ) : (
                             <>
