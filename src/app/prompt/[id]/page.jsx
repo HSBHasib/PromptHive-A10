@@ -18,7 +18,7 @@ const PromptDetails = async ({ params }) => {
   const singlePrompt = allPrompts.find((p) => p._id === id);
   const creator = allUsers.find((u) => u._id === singlePrompt?.userId);
   const { data: userBookmarks } = await getBookmarks(currentUserId);
-  const {reviews, totalReview} = await getReviews(singlePrompt?._id);  
+  const {reviews, totalReview} = await getReviews({ promptId: singlePrompt?._id });
 
   const isAlreadyBookmarked =
     userBookmarks?.some((b) => b.promptId === id) || false;
