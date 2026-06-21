@@ -17,8 +17,8 @@ import {
   LuChevronDown,
   LuTrash2,
 } from "react-icons/lu";
-import { useRouter } from "next/navigation";
 import UserDeleteDialog from "./UserDeleteDiolog";
+import toast from "react-hot-toast";
 
 const AllUserTable = ({
   users,
@@ -31,7 +31,6 @@ const AllUserTable = ({
 }) => {
   const roles = ["user", "creator", "admin"];
   const totalPages = Math.ceil(total / limit);
-  const router = useRouter();
 
   return (
     <div className="w-full flex flex-col gap-4">
@@ -79,7 +78,7 @@ const AllUserTable = ({
                         </span>
                       </div>
                     </Table.Cell>
-                    
+
                     {/* Email */}
                     <Table.Cell className="text-sm text-stone-600">
                       {user?.email}
@@ -91,7 +90,7 @@ const AllUserTable = ({
                         {user?.plan || "Free"}
                       </Chip>
                     </Table.Cell>
-                    
+
                     {/* Status */}
                     <Table.Cell>
                       <Chip
@@ -104,7 +103,7 @@ const AllUserTable = ({
                         {user?.status || "Active"}
                       </Chip>
                     </Table.Cell>
-                    
+
                     {/* Role */}
                     <Table.Cell>
                       {user?._id === currentUserId ||
@@ -200,12 +199,20 @@ const AllUserTable = ({
                               window.location.reload();
                             }}
                           />
+
+                          {/* =============== Implement user 'BAN' fetures in future =============== */}
                           {/* User Block Button */}
                           <Button
                             isIconOnly
                             size="sm"
                             variant="light"
                             className="text-rose-500 hover:bg-rose-100"
+                            onClick={() =>
+                              toast("Ban feature is under construction.", {
+                                duration: 1500,
+                                icon: "🚧",
+                              })
+                            }
                           >
                             <LuBan size={16} />
                           </Button>

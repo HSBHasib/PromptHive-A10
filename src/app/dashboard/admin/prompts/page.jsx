@@ -1,11 +1,11 @@
 import React from "react";
 import PromptContent from "@/components/dashboard/promptContent/PromptContent";
 import { getPrompts } from "@/lib/api/prompts";
-import { getUserSession } from "@/lib/core/session";
+import { getUsers } from "@/lib/api/users";
 
 const UserPromptsData = async ({ searchParams }) => {
-  const user = await getUserSession();
-
+  // Get All Users Data
+  const {data: users} = await getUsers();
   const resolvedSearchParams = await searchParams;
   const currentPage = resolvedSearchParams?.page || "1";
 
@@ -22,13 +22,14 @@ const UserPromptsData = async ({ searchParams }) => {
   return (
     <div className="p-4 w-full max-w-[1600px] mx-auto">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-[#867070]">My Prompts</h1>
+        <h1 className="text-2xl font-bold text-[#867070]">Prompt Template Submissions Moderation
+</h1>
         <p className="text-sm text-[#917C7C] mt-1">
-          Manage and monitor all your submitted AI prompts.
+          Approve templates, reject with feedback, or tag featured highlights.
         </p>
       </div>
 
-      <PromptContent prompts={prompts} totalPrompts={total} currentPage={parseInt(currentPage)} />
+      <PromptContent users={users} prompts={prompts} totalPrompts={total} currentPage={parseInt(currentPage)} isAdmin={true} />
     </div>
   );
 };

@@ -13,9 +13,8 @@ const AllUsersContent = ({ user }) => {
   const searchParams = useSearchParams();
 
   const userId = user?.id;
-  const userName = user?.name;
   const userRole = user?.role;
-  
+
   const page = parseInt(searchParams.get("page") || "1");
   const limit = 4;
 
@@ -42,17 +41,26 @@ const AllUsersContent = ({ user }) => {
   };
 
   return (
-    <AllUserTable
-      users={usersData.data}
-      total={usersData.total}
-      currentPage={page}
-      limit={limit}
-      onPageChange={(p) => router.push(`${pathname}?page=${p}`)}
-      onRoleChange={handleRoleUpdate}
-      currentUserId={userId}
-    />
+    <div className="p-4 w-full max-w-[1600px] mx-auto">
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-[#867070]">User Role & Accounts Management</h1>
+        <p className="text-sm text-[#917C7C] mt-1">
+          Review accounts, modify role scopes, delete and ban users .
+        </p>
+      </div>
+
+      {/* All User Table Data */}
+      <AllUserTable
+        users={usersData.data}
+        total={usersData.total}
+        currentPage={page}
+        limit={limit}
+        onPageChange={(p) => router.push(`${pathname}?page=${p}`)}
+        onRoleChange={handleRoleUpdate}
+        currentUserId={userId}
+      />
+    </div>
   );
 };
 
 export default AllUsersContent;
-
