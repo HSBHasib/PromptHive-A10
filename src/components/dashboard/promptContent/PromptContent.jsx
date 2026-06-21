@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Table, Chip, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import {
@@ -18,6 +18,7 @@ import UpdatedPromptContainer from "./UpdatedPrompt";
 import DeleteDialogContainer from "./DeleteDialog";
 import toast from "react-hot-toast";
 import { updatePrompt } from "@/lib/action/prompts";
+import RejectedModal from "../admin/allUser/RejectedModal";
 
 const statusColorMap = {
   pending: { className: "bg-amber-100/30 border-amber-300 text-amber-700" },
@@ -34,6 +35,9 @@ const PromptContent = ({
   currentPage,
   isAdmin = false,
 }) => {
+  const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
+  const [rejectionReason, setRejectionReason] = useState("");
+  const [selectedPrompt, setSelectedPrompt] = useState(null);
   const router = useRouter();
 
   const getColumns = () => {
@@ -119,7 +123,7 @@ const PromptContent = ({
     });
   };
 
-  const handleStatusUpdate = async (promptId, newStatus) => {
+  const handleApprovedUpdate  = async (promptId, newStatus) => {
     try {
       const result = await updatePrompt(promptId, { status: newStatus });
 
@@ -130,6 +134,24 @@ const PromptContent = ({
     } catch (error) {
       toast.error("Failed to update status");
     }
+  };
+
+  // Rejected Func
+  const handleRejectSubmit = async () => {
+    if (!rejectionReason) {
+      toast.error("Please provide a rejection reason.");
+      return;
+    }
+
+    await updatePrompt(selectedPrompt._id, {
+      status: "rejected",
+      rejectionReason: rejectionReason,
+    });
+
+    setIsRejectModalOpen(false);
+    setRejectionReason("");
+    router.refresh();
+    toast.success("Prompt rejected with feedback.");
   };
 
   return (
@@ -276,7 +298,7 @@ const PromptContent = ({
                                     variant="light"
                                     className="text-emerald-600 hover:bg-emerald-500/10 bg-emerald-500/5"
                                     onClick={() =>
-                                      handleStatusUpdate(item._id, "approved")
+                                      handleApprovedUpdate(item._id, "approved")
                                     }
                                   >
                                     <LuCheck size={18} />
@@ -290,6 +312,11 @@ const PromptContent = ({
                                     size="sm"
                                     variant="light"
                                     className="text-rose-600 hover:bg-rose-500/10 bg-rose-500/5"
+                                    onClick={() => {
+                                      console.log("Button Clicked");
+                                      setSelectedPrompt(item);
+                                      setIsRejectModalOpen(true);
+                                    }}
                                   >
                                     <LuX size={18} />
                                   </Button>
@@ -321,7 +348,6 @@ const PromptContent = ({
           </Table>
         </Table.ResizableContainer>
       </div>
-
       {/* Pagination */}
       {totalPrompts > 0 && (
         <div className="w-full flex items-center justify-end mt-2">
@@ -346,6 +372,16 @@ const PromptContent = ({
           </div>
         </div>
       )}
+
+      {/* Rejected Modal */}
+      <RejectedModal
+        isRejectModalOpen={isRejectModalOpen}
+        setIsRejectModalOpen={setIsRejectModalOpen}
+        selectedPrompt={selectedPrompt}
+        rejectionReason={rejectionReason}
+        setRejectionReason={setRejectionReason}
+        handleRejectSubmit={handleRejectSubmit}
+      />
     </div>
   );
 };
