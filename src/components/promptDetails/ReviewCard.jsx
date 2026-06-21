@@ -11,13 +11,16 @@ const ReviewCard = ({ prompt, user, canAccessPrivate }) => {
   const userId = user?.id;
   const promptId = prompt?._id;
 
+  const userName = user?.name;
+  const userImage = user?.image;
+
   const handleReview = async () => {
     if (!comment.trim()) {
       toast.error("Please write a review before submitting!");
       return;
     }
 
-    const reviewData = { promptId, userId, rating, comment };
+    const reviewData = { promptId, userId, rating, comment, userName, userImage};
 
     try {
       const res = await addReview(reviewData);
@@ -34,7 +37,7 @@ const ReviewCard = ({ prompt, user, canAccessPrivate }) => {
     }
   };
   return (
-    <div className="max-w-lg bg-white/50 p-5 rounded-2xl border border-stone-100 shadow-sm my-8">
+    <div className="bg-white/50 p-5 rounded-2xl border border-stone-100 shadow-sm my-8">
       <h3 className="text-lg font-bold text-stone-700 mb-3">Leave a Review</h3>
       {!canAccessPrivate ? (
         <div className="p-4 border border-stone-200 rounded-lg text-stone-500 text-sm font-medium">

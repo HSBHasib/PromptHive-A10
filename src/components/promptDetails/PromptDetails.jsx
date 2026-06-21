@@ -8,8 +8,6 @@ const PromptDetails = ({ prompt, creator, reviews = [] }) => {
     ? (reviews.reduce((acc, curr) => acc + curr.rating, 0) / reviews.length).toFixed(1) 
     : 0;
 
-    console.log('creator - ',creator)
-
   return (
     <div className="bg-white/40 p-6 rounded-2xl shadow-sm border border-stone-200 mb-6">
       <h3 className="text-lg font-bold text-stone-700 mb-6">Prompt Details</h3>
