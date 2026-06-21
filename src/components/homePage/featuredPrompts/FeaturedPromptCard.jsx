@@ -29,7 +29,7 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
   const filterUser = user.filter((u) => u._id === userId);
 
   const targetDetailsRoute = isUserLoggedIn
-    ? `/prompts/${_id}`
+    ? `/prompt/${_id}`
     : "/auth/signin";
 
   const isPremium = price && parseFloat(price) > 0;

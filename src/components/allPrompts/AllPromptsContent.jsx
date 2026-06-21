@@ -241,7 +241,7 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
       )}
 
       {/* Pagination */}
-      {totalPages > 1 && (
+      {(
         <div className="flex justify-center mt-4 p-4 bg-[#86707005] border border-[#86707015] rounded-2xl">
           <Pagination className="w-full flex flex-col md:flex-row justify-between items-center gap-4 text-[#867070]">
             <Pagination.Summary className="text-sm font-medium text-[#867070aa]">

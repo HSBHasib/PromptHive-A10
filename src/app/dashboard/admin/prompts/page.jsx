@@ -11,7 +11,7 @@ const UserPromptsData = async ({ searchParams }) => {
 
   const queryObj = {
     page: currentPage,
-    limit: "4",
+    limit: "8",
   };
 
   const queryString = new URLSearchParams(queryObj).toString();
@@ -35,3 +35,5 @@ const UserPromptsData = async ({ searchParams }) => {
 };
 
 export default UserPromptsData;
+
+

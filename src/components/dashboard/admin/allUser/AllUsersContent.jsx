@@ -16,7 +16,7 @@ const AllUsersContent = ({ user }) => {
   const userRole = user?.role;
 
   const page = parseInt(searchParams.get("page") || "1");
-  const limit = 4;
+  const limit = 8;
 
   const [usersData, setUsersData] = useState({ data: [], total: 0 });
 

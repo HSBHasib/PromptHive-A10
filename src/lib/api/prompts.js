@@ -11,8 +11,3 @@ export const getPrompts = async (queryString = "") => {
 };
 
 
-// // Get Prompts Based on user 
-// export const getPrompts = async (userId = "", page = 1) => {
-//     return serverFetch(`/api/prompts?userId=${userId}&page=${page}`);
-// }
-

@@ -15,16 +15,14 @@ export const serverMutation = async (path, data, method = "POST") => {
     },
   }
 
+  // Check Data is null or empty - (undefined)
   if (data !== null && data !== undefined) {
     options.body = JSON.stringify(data);
   }
   
-  const res = await fetch(`${baseUrl}${path}`, options);
-  console.log('response data - ',res)
-  
+  const res = await fetch(`${baseUrl}${path}`, options);  
   return res.json();
 };
-
 
 
 
