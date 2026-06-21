@@ -20,6 +20,8 @@ export const serverMutation = async (path, data, method = "POST") => {
   }
   
   const res = await fetch(`${baseUrl}${path}`, options);
+  console.log('response data - ',res)
+  
   return res.json();
 };
 

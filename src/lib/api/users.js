@@ -5,9 +5,3 @@ export const getUsers = async (params = "") => {
 }
 
 
-
-// export const getUsers = async (userId = "") => {
-//     return serverFetch(`/api/users?userId=${userId}`);
-// }
-
-
