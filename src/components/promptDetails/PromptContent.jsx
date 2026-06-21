@@ -2,7 +2,6 @@
 
 import { toggleBookmark } from "@/lib/action/bookMarks";
 import { updateCopyCount } from "@/lib/action/prompts";
-import { addReport } from "@/lib/action/reports";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import {
@@ -14,13 +13,16 @@ import {
 } from "react-icons/lu";
 import ReportModal from "./ReportModal";
 
-const PromptContent = ({ prompt, user, initialBookmarkStatus }) => {
+const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }) => {
   const [isCopied, setIsCopied] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(initialBookmarkStatus);
   const [isReportOpen, setIsReportOpen] = useState(false);
-  const isPrivate = prompt.visibility === "private";
-  const isPremiumUser = false;
-  const shouldBlur = isPrivate && !isPremiumUser;
+  // const isPrivate = prompt.visibility === "private";
+  // // const isPremiumUser = false;
+  //   const isPremiumUser = user?.plan === "pro";
+
+  // const shouldBlur = isPrivate && !isPremiumUser;
+
 
   // User Id
   const userId = user?.id;
@@ -64,7 +66,7 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus }) => {
     <>
       <div className="bg-white/40 p-8 rounded-2xl shadow-sm border border-stone-200">
         <div className="flex justify-between items-start mb-2">
-          <h1 className="text-3xl font-bold text-stone-900">{prompt.title}</h1>
+          <h1 className="text-3xl font-bold text-stone-700">{prompt.title}</h1>
           <div className="flex gap-2">
             <button
               className={`p-2 transition cursor-pointer rounded-lg bg-[#F5EBEB]/80 hover:bg-[#F5EBEB] border ${
@@ -93,9 +95,9 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus }) => {
         {/* Content */}
         <div className="flex justify-between items-center mb-3">
           <h4 className="text-base font-bold text-stone-600 capitalize tracking-wider flex items-center gap-2">
-            {shouldBlur && <LuLock size={14} />} Prompt Content
+            {!canAccessPrivate && <LuLock size={14} />} Prompt Content
           </h4>
-          {!shouldBlur && (
+          {canAccessPrivate && (
             <button
               onClick={handleCopy}
               className="flex items-center gap-1 cursor-pointer text-xs font-semibold text-rose-600 hover:bg-rose-200/80 bg-rose-100 px-3 py-1.5 rounded-lg transition"
@@ -108,14 +110,14 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus }) => {
 
         <div className="relative rounded-xl border border-stone-200 overflow-hidden">
           <div
-            className={`bg-stone-50 p-4 h-40 ${shouldBlur ? "blur-md select-none pointer-events-none" : ""}`}
+            className={`bg-stone-50 p-4 h-40 ${!canAccessPrivate ? "blur-md select-none pointer-events-none" : ""}`}
           >
             <p className="text-stone-800 whitespace-pre-wrap text-sm">
               {prompt.content}
             </p>
           </div>
 
-          {shouldBlur && (
+          {!canAccessPrivate && (
             <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-white/10 backdrop-blur-[2px]">
               <div className="bg-white/60 p-4 rounded-xl shadow-lg border border-stone-100 text-center mx-4">
                 <LuLock className="mx-auto mb-2 text-[#867070]" size={20} />
@@ -152,3 +154,4 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus }) => {
 };
 
 export default PromptContent;
+
