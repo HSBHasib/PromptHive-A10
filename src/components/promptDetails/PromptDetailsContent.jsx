@@ -8,13 +8,14 @@ const PromptDetailsContent = ({
   creator,
   user,
   initialBookmarkStatus,
+  reviews
 }) => {
   const isPrivate = prompt.visibility === "private";
   const isPremiumUser = user?.plan === "pro";
 
   const canAccessPrivate = !isPrivate || isPremiumUser;
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div className="lg:col-span-2 flex flex-col">
         <PromptContent
           prompt={prompt}
@@ -26,8 +27,8 @@ const PromptDetailsContent = ({
       </div>
 
       <div className="lg:col-span-1">
-        <PromptDetails prompt={prompt} creator={creator} />
-        <PromptReview promptId={prompt._id} />
+        <PromptDetails prompt={prompt} creator={creator} reviews={reviews} />
+        <PromptReview promptId={prompt._id} reviews={reviews} />
       </div>
     </div>
   );
