@@ -12,7 +12,6 @@ const AllUsersContent = ({ user }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  console.log('user data is - ',user)
   const userId = user?.id;
   const userName = user?.name;
   const userRole = user?.role;
@@ -35,7 +34,7 @@ const AllUsersContent = ({ user }) => {
   const handleRoleUpdate = async (userId, newRole) => {
     const res = await updateUser(userId, { role: newRole });
     if (res.modifiedCount) {
-      toast.success(`${userName} Role updated ${userRole} to ${newRole} successfully!`);
+      toast.success(`Role updated ${userRole} to ${newRole} successfully!`);
       fetchData();
     } else {
       toast.error("Failed to update role");

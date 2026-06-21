@@ -11,12 +11,14 @@ import {
   PopoverContent,
 } from "@heroui/react";
 import {
-  LuTrash2,
   LuBan,
   LuChevronLeft,
   LuChevronRight,
   LuChevronDown,
+  LuTrash2,
 } from "react-icons/lu";
+import { useRouter } from "next/navigation";
+import UserDeleteDialog from "./UserDeleteDiolog";
 
 const AllUserTable = ({
   users,
@@ -29,6 +31,7 @@ const AllUserTable = ({
 }) => {
   const roles = ["user", "creator", "admin"];
   const totalPages = Math.ceil(total / limit);
+  const router = useRouter();
 
   return (
     <div className="w-full flex flex-col gap-4">
@@ -67,6 +70,7 @@ const AllUserTable = ({
               <Table.Body items={users || []} emptyContent={"No users found"}>
                 {(user) => (
                   <Table.Row key={user?._id}>
+                    {/* Name */}
                     <Table.Cell>
                       <div className="flex items-center gap-3 py-1">
                         <Avatar name={user?.name} size="sm" />
@@ -75,14 +79,20 @@ const AllUserTable = ({
                         </span>
                       </div>
                     </Table.Cell>
+                    
+                    {/* Email */}
                     <Table.Cell className="text-sm text-stone-600">
                       {user?.email}
                     </Table.Cell>
+
+                    {/* Plan */}
                     <Table.Cell>
                       <Chip size="sm" variant="flat">
                         {user?.plan || "Free"}
                       </Chip>
                     </Table.Cell>
+                    
+                    {/* Status */}
                     <Table.Cell>
                       <Chip
                         size="sm"
@@ -94,8 +104,11 @@ const AllUserTable = ({
                         {user?.status || "Active"}
                       </Chip>
                     </Table.Cell>
+                    
+                    {/* Role */}
                     <Table.Cell>
-                      {user?._id === currentUserId ? (
+                      {user?._id === currentUserId ||
+                      user?.email === "adminadm19@gmail.com" ? (
                         <div className="flex items-center gap-2">
                           <Button
                             size="sm"
@@ -106,7 +119,10 @@ const AllUserTable = ({
                             {user?.role}
                           </Button>
                           <span className="text-[10px] text-stone-400 italic">
-                            (Self)
+                            {user?.email === "adminadm19@gmail.com" &&
+                            user?._id !== currentUserId
+                              ? "Main"
+                              : "Self"}
                           </span>
                         </div>
                       ) : (
@@ -141,20 +157,60 @@ const AllUserTable = ({
                         </Popover>
                       )}
                     </Table.Cell>
+
+                    {/* Register Date */}
                     <Table.Cell>
                       {user?.createdAt
                         ? new Date(user?.createdAt).toLocaleDateString()
                         : "N/A"}
                     </Table.Cell>
+
+                    {/* Actions Icons */}
                     <Table.Cell>
-                      <div className="flex justify-end gap-1">
-                        <Button isIconOnly size="sm" variant="light" className="text-rose-500 hover:bg-rose-100">
-                          <LuTrash2 size={16} />
-                        </Button>
-                        <Button isIconOnly size="sm" variant="light" className="text-rose-500 hover:bg-rose-100">
-                          <LuBan size={16} />
-                        </Button>
-                      </div>
+                      {user?._id === currentUserId ||
+                      user?.email === "adminadm19@gmail.com" ? (
+                        <div className="flex justify-end gap-1">
+                          {/* Admin Delete Button */}
+                          <Button
+                            isIconOnly
+                            size="sm"
+                            variant="light"
+                            className="text-stone-300"
+                          >
+                            <LuTrash2 size={15} />
+                          </Button>
+
+                          {/* Admin Block Button */}
+                          <Button
+                            isIconOnly
+                            size="sm"
+                            variant="light"
+                            className="text-stone-300"
+                          >
+                            <LuBan size={16} />
+                          </Button>
+                        </div>
+                      ) : (
+                        <div className="flex justify-end gap-1">
+                          {/* Delete Button */}
+                          <UserDeleteDialog
+                            userId={user?._id}
+                            userName={user?.name}
+                            onDeleteSuccess={() => {
+                              window.location.reload();
+                            }}
+                          />
+                          {/* User Block Button */}
+                          <Button
+                            isIconOnly
+                            size="sm"
+                            variant="light"
+                            className="text-rose-500 hover:bg-rose-100"
+                          >
+                            <LuBan size={16} />
+                          </Button>
+                        </div>
+                      )}
                     </Table.Cell>
                   </Table.Row>
                 )}
@@ -198,4 +254,3 @@ const AllUserTable = ({
 };
 
 export default AllUserTable;
-

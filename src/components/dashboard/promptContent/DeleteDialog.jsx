@@ -5,8 +5,9 @@ import { deletePrompt } from '@/lib/action/prompts';
 const DeleteDialogContainer = ({ promptId, promptTitle, onDeleteSuccess }) => {
   return (
     <DeleteDialogContent 
-      promptId={promptId} 
-      promptTitle={promptTitle}
+      typeName="prompt"
+      id={promptId} 
+      title={promptTitle}
       onDeleteSuccess={onDeleteSuccess} 
       deletePromptAction={deletePrompt} 
     />

@@ -6,10 +6,11 @@ import toast from "react-hot-toast";
 import { LuTrash2, LuX, LuTriangleAlert } from "react-icons/lu";
 
 const DeleteDialogContent = ({
-  promptId,
-  promptTitle,
+  id,
+  title,
   onDeleteSuccess,
   deletePromptAction,
+  typeName = "Item",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -17,22 +18,20 @@ const DeleteDialogContent = ({
   const handleDeleteSubmit = async () => {
     setIsDeleting(true);
     try {
-        // Call Delete Func to Delete Prompt From MongoDB   
-      const res = await deletePromptAction(promptId);
-      console.log('delete func data - ', res)
+      const res = await deletePromptAction(id);
 
       if (res) {
-        toast.success("Prompt deleted successfully!");
-        
-        // After SuccessFully Delete Prompt Close modal and Refresh UI
-        setIsOpen(false); 
-        if (onDeleteSuccess) onDeleteSuccess(); 
+        toast.success(`${typeName} deleted successfully!`);
+
+        setIsOpen(false);
+        if (onDeleteSuccess) onDeleteSuccess();
       } else {
-        toast.error("Failed to delete the prompt.");
+        toast.error(`Failed to delete the ${typeName.toLowerCase()}.`);
       }
     } catch (error) {
-      console.error("Delete error:", error);
-      toast.error("Something went wrong during deletion.");
+      toast.error(
+        `Something went wrong during ${typeName.toLowerCase()} deletion.`,
+      );
     } finally {
       setIsDeleting(false);
     }
@@ -67,7 +66,7 @@ const DeleteDialogContent = ({
                   <LuTriangleAlert size={20} />
                 </div>
                 <Modal.Heading className="text-xl font-bold text-[#403535]">
-                  Delete Prompt?
+                  {typeName === "user" ? "Delete User" : "Delete Prompt"}
                 </Modal.Heading>
               </Modal.Header>
 
@@ -76,7 +75,7 @@ const DeleteDialogContent = ({
                 <p className="text-sm text-[#867070] font-medium leading-relaxed">
                   Are you sure you want to permanently delete{" "}
                   <span className="font-bold text-rose-700">
-                    "{promptTitle || "prompt"}"
+                    "{title || typeName}"
                   </span>
                   ? This action cannot be undone.
                 </p>
