@@ -12,8 +12,14 @@ import {
   LuCheck,
 } from "react-icons/lu";
 import ReportModal from "./ReportModal";
+import Link from "next/link";
 
-const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }) => {
+const PromptContent = ({
+  prompt,
+  user,
+  initialBookmarkStatus,
+  canAccessPrivate,
+}) => {
   const [isCopied, setIsCopied] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(initialBookmarkStatus);
   const [isReportOpen, setIsReportOpen] = useState(false);
@@ -117,7 +123,7 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }
                 <LuLock className="mx-auto mb-2 text-[#867070]" size={20} />
                 <p className="text-sm font-semibold mb-2">Premium Content</p>
                 <button className="bg-[#867070]/90 text-white px-4 py-1.5 rounded-full text-xs font-semibold hover:bg-[#867070] cursor-pointer transition">
-                  Subscribe to Premium
+                  <Link href="/payments">Subscribe to Premium</Link>
                 </button>
               </div>
             </div>
@@ -131,8 +137,8 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }
           </h4>
           <p className="text-stone-600 text-sm">
             For best results, configure your parameters on{" "}
-            <strong>{prompt?.aiTool}</strong> with low temperature (0.3 - 0.5) to
-            avoid hallucinations. Replace bracketed tags in the template with
+            <strong>{prompt?.aiTool}</strong> with low temperature (0.3 - 0.5)
+            to avoid hallucinations. Replace bracketed tags in the template with
             your target topic details.
           </p>
         </div>
@@ -148,4 +154,3 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }
 };
 
 export default PromptContent;
-

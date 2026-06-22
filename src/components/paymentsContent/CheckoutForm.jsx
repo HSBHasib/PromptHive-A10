@@ -1,3 +1,6 @@
+import { LiaCheckCircle } from "react-icons/lia";
+
+
 const CheckoutForm = () => {
   return (
     <div className="bg-[#E5DCDC] p-8 rounded-3xl border border-stone-200 shadow-sm w-full max-w-md">
@@ -10,10 +13,10 @@ const CheckoutForm = () => {
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="bg-white/40 p-4 rounded-xl text-sm text-stone-600">
-          <p>✅ Full Access to Private Prompts</p>
-          <p>✅ Priority Creator Support</p>
-          <p>✅ Advanced Analytical Insights</p>
+        <div className="bg-white/40 p-4 rounded-xl text-sm text-stone-600 space-y-2">
+          <p className="flex items-center gap-2"><LiaCheckCircle size={16} className="text-green-500" /> Full Access to Private Prompts</p>
+          <p className="flex items-center gap-2"><LiaCheckCircle size={16} className="text-green-500" /> Priority Creator Support</p>
+          <p className="flex items-center gap-2"><LiaCheckCircle size={16} className="text-green-500" /> Advanced Analytical Insights</p>
         </div>
 
         <div className="text-center">
@@ -26,7 +29,7 @@ const CheckoutForm = () => {
           </form>
         </div>
 
-        <p className="text-[10px] text-stone-500 text-center px-2">
+        <p className="text-[11px] text-stone-500 text-center px-2">
           By clicking pay, you will be redirected to Stripe's secure
           environment.
         </p>
@@ -36,3 +39,4 @@ const CheckoutForm = () => {
 };
 
 export default CheckoutForm;
+

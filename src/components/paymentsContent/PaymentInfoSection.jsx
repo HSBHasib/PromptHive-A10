@@ -14,7 +14,7 @@ const PaymentInfoSection = () => {
         Join thousands of elite prompt engineers and get instant access to our most powerful, verified prompt libraries.
       </p>
 
-      <ul className="flex flex-col gap-6 mt-4">
+      <ul className="flex flex-col gap-4 mt-4">
         <li className="flex gap-4">
           <LuCheck className="text-stone-600 mt-1" />
           <div>

@@ -8,12 +8,14 @@ import { createPrompt } from "@/lib/action/prompts";
 import PromptForm from "../../promptForm/PromptForm";
 import { useRouter } from "next/navigation";
 
-const AddPromptContent = ({ user, plan, currentPrompts }) => {
+const AddPromptContent = ({ user, planArr, currentPrompts }) => {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
+  
+  const plan = planArr[0];
   
   // User Id and Role
   const userId = user?.id;
@@ -23,7 +25,7 @@ const AddPromptContent = ({ user, plan, currentPrompts }) => {
   const isPro = plan?.plan === "pro";
   const maxLimit = plan?.maxLimit || 3;
   const remaining = maxLimit - currentPrompts;
-  const canAdd = isPro || currentPrompts < maxLimit;
+  const canAdd = isPro;
 
 
   // 💡 React Hook Form onSubmit handler
