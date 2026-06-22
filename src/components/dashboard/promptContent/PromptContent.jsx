@@ -280,7 +280,7 @@ const PromptContent = ({
                               variant="light"
                               onClick={() =>
                                 router.push(
-                                  `/dashboard/my-prompts/analytics/${item?._id}`,
+                                  `/prompt/${item?._id}`,
                                 )
                               }
                               className="text-[#867070] hover:text-sky-600 hover:bg-sky-100 bg-sky-50"

@@ -17,12 +17,6 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }
   const [isCopied, setIsCopied] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(initialBookmarkStatus);
   const [isReportOpen, setIsReportOpen] = useState(false);
-  // const isPrivate = prompt.visibility === "private";
-  // // const isPremiumUser = false;
-  //   const isPremiumUser = user?.plan === "pro";
-
-  // const shouldBlur = isPrivate && !isPremiumUser;
-
 
   // User Id
   const userId = user?.id;
@@ -66,7 +60,7 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }
     <>
       <div className="bg-white/40 p-8 rounded-2xl shadow-sm border border-stone-200">
         <div className="flex justify-between items-start mb-2">
-          <h1 className="text-3xl font-bold text-stone-700">{prompt.title}</h1>
+          <h1 className="text-3xl font-bold text-stone-700">{prompt?.title}</h1>
           <div className="flex gap-2">
             <button
               className={`p-2 transition cursor-pointer rounded-lg bg-[#F5EBEB]/80 hover:bg-[#F5EBEB] border ${
@@ -90,7 +84,7 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }
           </div>
         </div>
 
-        <p className="text-stone-600 text-sm mb-6">{prompt.description}</p>
+        <p className="text-stone-600 text-sm mb-6">{prompt?.description}</p>
 
         {/* Content */}
         <div className="flex justify-between items-center mb-3">
@@ -113,7 +107,7 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }
             className={`bg-stone-50 p-4 h-40 ${!canAccessPrivate ? "blur-md select-none pointer-events-none" : ""}`}
           >
             <p className="text-stone-800 whitespace-pre-wrap text-sm">
-              {prompt.content}
+              {prompt?.content}
             </p>
           </div>
 
@@ -137,7 +131,7 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }
           </h4>
           <p className="text-stone-600 text-sm">
             For best results, configure your parameters on{" "}
-            <strong>{prompt.aiTool}</strong> with low temperature (0.3 - 0.5) to
+            <strong>{prompt?.aiTool}</strong> with low temperature (0.3 - 0.5) to
             avoid hallucinations. Replace bracketed tags in the template with
             your target topic details.
           </p>
@@ -146,7 +140,7 @@ const PromptContent = ({ prompt, user, initialBookmarkStatus, canAccessPrivate }
       <ReportModal
         isOpen={isReportOpen}
         onClose={() => setIsReportOpen(false)}
-        promptId={prompt._id}
+        promptId={prompt?._id}
         userId={user?.id}
       />
     </>

@@ -11,7 +11,7 @@ const PromptDetailsContent = ({
   reviews,
   totalReview
 }) => {
-  const isPrivate = prompt.visibility === "private";
+  const isPrivate = prompt?.visibility === "private";
   const isPremiumUser = user?.plan === "pro";
 
   const canAccessPrivate = !isPrivate || isPremiumUser;
@@ -29,7 +29,7 @@ const PromptDetailsContent = ({
 
       <div className="lg:col-span-1">
         <PromptDetails prompt={prompt} creator={creator} reviews={reviews} />
-        <PromptReview promptId={prompt._id} reviews={reviews} totalReview={totalReview} />
+        <PromptReview promptId={prompt?._id} reviews={reviews} totalReview={totalReview} />
       </div>
     </div>
   );
