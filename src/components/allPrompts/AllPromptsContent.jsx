@@ -12,6 +12,7 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
   
   const [searchInput, setSearchInput] = useState(filters.search || "");
 
+
   const itemsPerPage = 9;
   const promptsData = prompts?.prompts || [];
   const totalItems = prompts?.totalItems || 0;

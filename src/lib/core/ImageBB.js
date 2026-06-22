@@ -3,6 +3,8 @@ import toast from "react-hot-toast";
 export const uploadImageToImgBB = async (file) => {
   const IMGBB_API_KEY = process.env.NEXT_PUBLIC_Logo_API;
 
+  console.log("image key - ", IMGBB_API_KEY);
+
   if (!file) {
     toast.error("No file provided for upload");
     return null;

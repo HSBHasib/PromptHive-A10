@@ -3,12 +3,7 @@ import React from 'react';
 import { LuBox, LuEye, LuBookmark, LuCopy, LuStar, LuGauge, LuTag } from "react-icons/lu";
 
 const PromptDetails = ({ prompt, creator, reviews = [] }) => {
-  // Calculate AVG Rating
-  const avgRating = reviews.length > 0 
-    ? (reviews.reduce((acc, curr) => acc + curr.rating, 0) / reviews.length).toFixed(1) 
-    : 0;
-
-  return (
+    return (
     <div className="bg-white/40 p-6 rounded-2xl shadow-sm border border-stone-200 mb-6">
       <h3 className="text-lg font-bold text-stone-700 mb-6">Prompt Details</h3>
       
@@ -22,12 +17,6 @@ const PromptDetails = ({ prompt, creator, reviews = [] }) => {
       </div>
 
       <div className="space-y-4">
-        {/* Rating */}
-        <div className="flex justify-between items-center ">
-          <span className="text-stone-500 flex items-center gap-2"><LuStar size={16}/> Rating</span>
-          <span className="font-bold text-stone-700">{avgRating} / 5.0</span>
-        </div>
-
         {/* Difficulty */}
         <div className="flex justify-between items-center ">
           <span className="text-stone-500 flex items-center gap-2"><LuGauge size={16}/> Difficulty</span>

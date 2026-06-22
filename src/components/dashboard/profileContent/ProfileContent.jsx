@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { LuGem, LuCheck } from "react-icons/lu";
 
@@ -85,7 +86,9 @@ const ProfileContent = ({ user, prompts }) => {
             </p>
           </div>
           <button className="bg-white cursor-pointer text-[#867070] px-6 py-2 rounded-lg font-bold hover:bg-gray-100 transition">
-            Upgrade Now ($5)
+            <Link href="/payments" target="_blank">
+              Upgrade Now ($5)
+            </Link>
           </button>
         </div>
       ) : (

@@ -60,7 +60,7 @@ export default function DashboardSideBar() {
     },
     {
       icon: MdOutlinePayments,
-      href: "/dashboard/admin/payments",
+      href: "/dashboard/admin/payments-details",
       label: "All Payments",
     },
     {

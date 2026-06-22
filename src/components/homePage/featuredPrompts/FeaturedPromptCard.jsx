@@ -19,8 +19,8 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
     category,
     difficulty,
     copyCount,
-    rating,
     price,
+    averageRating,
     thumbnail,
     userId,
     _id,
@@ -28,9 +28,7 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
 
   const filterUser = user.filter((u) => u._id === userId);
 
-  const targetDetailsRoute = isUserLoggedIn
-    ? `/prompt/${_id}`
-    : "/auth/signin";
+  const targetDetailsRoute = isUserLoggedIn ? `/prompt/${_id}` : "/auth/signin";
 
   const isPremium = price && parseFloat(price) > 0;
 
@@ -109,8 +107,8 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
         <div className="flex items-center justify-between text-xs text-[#86707085] font-medium">
           <div className="flex items-center gap-1 text-amber-600 bg-amber-500/5 px-2 py-0.5 rounded-md border border-amber-500/10">
             <HiOutlineStar className="text-sm fill-amber-500 text-amber-500" />
-            <span className="font-bold text-[#867070]">
-              {rating ? Number(rating).toFixed(1) : "0.0"}
+            <span key={idx} className="font-bold text-[#867070]">
+              {averageRating}
             </span>
           </div>
           <div className="flex items-center gap-1.5 text-[#867070]">
