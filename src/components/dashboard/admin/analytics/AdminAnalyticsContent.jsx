@@ -12,7 +12,7 @@ const AdminAnalyticsContent = ({ stats, promptsData }) => {
         <StatsCard title="Total Prompts" value={stats.totalPrompts} icon={<HiOutlineDocumentText />} />
         <StatsCard title="Total Reviews" value={stats.totalReviews} icon={<HiOutlineChatBubbleLeftRight />} />
         <StatsCard title="Total Copies" value={stats.totalCopies} icon={<HiOutlineDocumentDuplicate />} />
-        <StatsCard title="Total Revenue" value={`$${stats.totalRevenue?.toFixed(2)}`} icon={<HiOutlineCurrencyDollar />} />
+        <StatsCard title="Total Revenue" value={`$${stats.totalRevenue}`} icon={<HiOutlineCurrencyDollar />} />
       </div>
 
       {/* 🎯 Analytics Charts Section */}
