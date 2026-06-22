@@ -15,9 +15,7 @@ const AddPromptContent = ({ user, planArr, currentPrompts }) => {
   const router = useRouter();
 
   
-  // const plan = planArr;
   const plan = planArr[0];
-  // console.log('plan data - ', plan)
   
   // User Id and Role
   const userId = user?.id;

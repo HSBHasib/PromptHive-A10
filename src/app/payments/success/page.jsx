@@ -79,7 +79,7 @@ const PaymentSuccessfulPage = async ({ searchParams }) => {
         {/* Action Button */}
         <div className="flex flex-col gap-3">
           <Link
-            href="/all-prompts"
+            href="/my-profile"
             className="bg-stone-800 text-white text-sm font-bold py-3 px-6 rounded-xl hover:bg-stone-900 transition"
           >
             Explore Premium Prompts
