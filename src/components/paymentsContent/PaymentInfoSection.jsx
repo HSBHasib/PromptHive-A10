@@ -42,3 +42,4 @@ const PaymentInfoSection = () => {
 };
 
 export default PaymentInfoSection;
+

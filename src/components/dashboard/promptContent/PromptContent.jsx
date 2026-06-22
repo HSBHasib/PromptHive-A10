@@ -19,6 +19,8 @@ import DeleteDialogContainer from "./DeleteDialog";
 import toast from "react-hot-toast";
 import { updatePrompt } from "@/lib/action/prompts";
 import RejectedModal from "../admin/allUser/RejectedModal";
+import PromptAnalyticsModal from "../user/promptAnalytics/PromptAnalyticsModal";
+import { BsBarChartLineFill } from "react-icons/bs";
 
 const statusColorMap = {
   pending: { className: "bg-amber-100/30 border-amber-300 text-amber-700" },
@@ -34,10 +36,16 @@ const PromptContent = ({
   totalPrompts,
   currentPage,
   isAdmin = false,
+  userRole,
+  reviews,
+  totalReview
 }) => {
   const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
   const [rejectionReason, setRejectionReason] = useState("");
   const [selectedPrompt, setSelectedPrompt] = useState(null);
+  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
+  const [analyticsData, setAnalyticsData] = useState(null);
+
   const router = useRouter();
 
   const getColumns = () => {
@@ -123,7 +131,8 @@ const PromptContent = ({
     });
   };
 
-  const handleApprovedUpdate  = async (promptId, newStatus) => {
+  // Approved
+  const handleApprovedUpdate = async (promptId, newStatus) => {
     try {
       const result = await updatePrompt(promptId, { status: newStatus });
 
@@ -152,6 +161,30 @@ const PromptContent = ({
     setRejectionReason("");
     router.refresh();
     toast.success("Prompt rejected with feedback.");
+  };
+
+  // Analytics
+  const handleOpenAnalytics = (item) => {
+    const promptReviews = reviews.filter((r) => r.promptId === item._id);
+
+    const totalRating = promptReviews.reduce(
+      (acc, curr) => acc + (curr.rating || 0),
+      0,
+    );
+    const avgRating =
+      promptReviews.length > 0
+        ? (totalRating / promptReviews.length).toFixed(1)
+        : 0;
+
+    setAnalyticsData({
+      totalCopies: item.copies || 0,
+      bookmarks: item.bookmarks || 0,
+      avgRating: avgRating,
+      totalReview
+    });
+
+    setSelectedPrompt(item);
+    setIsAnalyticsOpen(true);
   };
 
   return (
@@ -279,9 +312,7 @@ const PromptContent = ({
                               size="sm"
                               variant="light"
                               onClick={() =>
-                                router.push(
-                                  `/prompt/${item?._id}`,
-                                )
+                                router.push(`/prompt/${item?._id}`)
                               }
                               className="text-[#867070] hover:text-sky-600 hover:bg-sky-100 bg-sky-50"
                             >
@@ -325,10 +356,25 @@ const PromptContent = ({
                             </>
                           ) : (
                             <>
+                              <div className="bg-amber-500/10  rounded-xl">
+
                               <UpdatedPromptContainer
                                 promptData={item}
                                 onUpdateSuccess={() => router.refresh()}
-                              />
+                                />
+                                </div>
+
+                              {userRole == "user" && (
+                                <Button
+                                  isIconOnly
+                                  size="sm"
+                                  variant="light"
+                                  className="text-[#867070] hover:bg-gray-200/7AddPromptContent0 px-2.5 py-2 bg-gray-100 rounded-xl"
+                                  onPress={() => handleOpenAnalytics(item)}
+                                >
+                                  <BsBarChartLineFill size={16} />
+                                </Button>
+                              )}
                             </>
                           )}
                           <div className="bg-rose-500/5 rounded-xl">
@@ -381,6 +427,14 @@ const PromptContent = ({
         rejectionReason={rejectionReason}
         setRejectionReason={setRejectionReason}
         handleRejectSubmit={handleRejectSubmit}
+      />
+
+      {/* Prompt Anlytics Modal */}
+      <PromptAnalyticsModal
+        isOpen={isAnalyticsOpen}
+        onOpenChange={setIsAnalyticsOpen}
+        promptData={selectedPrompt}
+        analytics={analyticsData}
       />
     </div>
   );

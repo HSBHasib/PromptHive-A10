@@ -11,7 +11,7 @@ const AddPromptPage = async () => {
 
   return (
     <div>
-      <AddPromptContent user={user} plan={plan} currentPrompts={total || 0} />
+      <AddPromptContent user={user} planArr={plan} currentPrompts={total || 0} />
     </div>
   )
 }

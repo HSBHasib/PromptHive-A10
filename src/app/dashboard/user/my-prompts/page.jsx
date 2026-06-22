@@ -2,10 +2,13 @@ import React from "react";
 import PromptContent from "@/components/dashboard/promptContent/PromptContent";
 import { getPrompts } from "@/lib/api/prompts";
 import { getUserSession } from "@/lib/core/session";
+import { getReviews } from "@/lib/api/reviews";
 
 const UserPromptsData = async ({ searchParams }) => {
   const user = await getUserSession();
   const userId = user?.id;
+  const userRole = user?.role;
+  const isAdmin = false;
 
   const resolvedSearchParams = await searchParams;
   const currentPage = resolvedSearchParams?.page || "1";
@@ -13,13 +16,15 @@ const UserPromptsData = async ({ searchParams }) => {
   const queryObj = {
     userId: userId,
     page: currentPage,
-    limit: "4",
+    limit: "8",
   };
 
   const queryString = new URLSearchParams(queryObj).toString();
 
   const prompts = (await getPrompts(queryString)) || { data: [], total: 0 };
   const total = prompts?.data.length;
+
+  const {totalReview, reviews} = await getReviews({ userId: user?.id });
 
   return (
     <div className="p-4">
@@ -30,7 +35,7 @@ const UserPromptsData = async ({ searchParams }) => {
         </p>
       </div>
 
-      <PromptContent prompts={prompts} totalPrompts={total} currentPage={parseInt(currentPage)} />
+      <PromptContent prompts={prompts} totalPrompts={total} currentPage={parseInt(currentPage)} isAdmin={isAdmin} userRole={userRole} reviews={reviews} totalReview={totalReview} />
     </div>
   );
 };
