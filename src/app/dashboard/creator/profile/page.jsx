@@ -20,3 +20,4 @@ const CreatorProfilePage = async () => {
 }
 
 export default CreatorProfilePage
+

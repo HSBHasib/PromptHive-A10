@@ -38,3 +38,4 @@ const AdminAnalyticsContent = ({ stats, promptsData }) => {
 }
 
 export default AdminAnalyticsContent
+

@@ -38,7 +38,6 @@ const PromptForm = ({ initialData = null, onSubmit, isSubmitting, imagePreview, 
     defaultValues: {
       difficulty: "beginner",
       visibility: "public",
-      price: "0",
     },
   });
 
@@ -63,7 +62,6 @@ const PromptForm = ({ initialData = null, onSubmit, isSubmitting, imagePreview, 
         category: initialData.category || "",
         aiTool: initialData.aiTool || "",
         tags: Array.isArray(initialData.tags) ? initialData.tags.join(", ") : initialData.tags || "",
-        price: initialData.price || "0",
         difficulty: initialData.difficulty || "beginner",
         visibility: initialData.visibility || "public",
       });
@@ -245,26 +243,6 @@ const PromptForm = ({ initialData = null, onSubmit, isSubmitting, imagePreview, 
             {errors.tags && (
               <p className="text-xs text-red-500 font-semibold mt-1">
                 {errors.tags.message}
-              </p>
-            )}
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <label className="font-bold text-sm text-[#867070]">
-              Price (USD) *
-            </label>
-            <input
-              type="number"
-              {...register("price", {
-                required: "Price is required",
-                min: { value: 0, message: "Price cannot be negative" },
-              })}
-              placeholder="0 for free prompts"
-              className="w-full border border-[#86707030] rounded-xl h-11 px-3 bg-white/50 focus:border-[#867070] outline-none text-sm"
-            />
-            {errors.price && (
-              <p className="text-xs text-red-500 font-semibold mt-1">
-                {errors.price.message}
               </p>
             )}
           </div>

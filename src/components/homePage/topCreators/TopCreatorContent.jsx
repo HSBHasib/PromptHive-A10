@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { HiCheckBadge, HiOutlineDocumentDuplicate } from "react-icons/hi2";
 
 const TopCreatorContent = ({ creator, idx }) => {
-  const { name, avatar, totalPrompts, totalCopies, isVerified } = creator || {};
+  const { name, avatar, totalPrompts, totalCopies } = creator || {};
 
   return (
     <motion.div
@@ -38,16 +38,6 @@ const TopCreatorContent = ({ creator, idx }) => {
             priority={idx < 4}
           />
         </div>
-        
-        {/* Dynamic verification indicator shield conditional layout tag matching image */}
-        {isVerified && (
-          <div 
-            className="absolute bottom-1 right-1 bg-[#EFE2E2] rounded-full p-0.5 shadow-sm border border-[#86707020]"
-            aria-label="Verified creator account indicator badge element"
-          >
-            <HiCheckBadge size={20} className="text-[#867070]" />
-          </div>
-        )}
       </div>
 
       {/* Name */}

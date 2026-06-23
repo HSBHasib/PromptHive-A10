@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import { getUsers } from "@/lib/api/users";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import toast from "react-hot-toast";
-import { updateUser } from "@/lib/action/user";
 import AllUserTable from "./AllUserTable";
+import { updateUser } from "@/lib/action/user";
 
-const AllUsersContent = ({ user }) => {
+const AllUsersContent = ({ user } ) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -64,3 +64,4 @@ const AllUsersContent = ({ user }) => {
 };
 
 export default AllUsersContent;
+

@@ -4,7 +4,6 @@ import { getUserSession } from "@/lib/core/session";
 import { getUsers } from "@/lib/api/users";
 import AllPromptsContent from "@/components/allPrompts/AllPromptsContent";
 import { getReviews } from "@/lib/api/reviews";
-import { AvatarFallback } from "@heroui/react";
 
 const AllPromptsPage = async ({ searchParams }) => {
   const resolvedParams = await searchParams;

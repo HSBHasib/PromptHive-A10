@@ -27,7 +27,7 @@ const UserPromptsData = async ({ searchParams }) => {
   const {totalReview, reviews} = await getReviews({ userId: user?.id });
 
   return (
-    <div className="p-4">
+    <div className="max-w-7xl mx-auto p-4">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[#867070]">My Prompts</h1>
         <p className="text-sm text-[#917C7C] mt-1">

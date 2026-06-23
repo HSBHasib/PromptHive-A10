@@ -1,7 +1,8 @@
-import { serverFetch } from "../core/server"
+import { protectedFetch } from "../core/server"
 
-// Get Plans Data
+// Get Plans Data 
 export const getPlan = async (plan) => {
-    return serverFetch(`/api/plans?plan=${plan}`)
+    return protectedFetch(`/api/plans?plan=${plan}`)
 }
+
 

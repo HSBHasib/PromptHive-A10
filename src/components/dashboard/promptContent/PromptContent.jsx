@@ -53,7 +53,7 @@ const PromptContent = ({
       {
         id: "promptTitle",
         label: "PROMPT TITLE",
-        defaultWidth: 260,
+        defaultWidth: 300,
         minWidth: 200,
         isRowHeader: true,
       },
@@ -62,7 +62,7 @@ const PromptContent = ({
             {
               id: "creator",
               label: "CREATOR",
-              defaultWidth: 180,
+              defaultWidth: 300,
               minWidth: 150,
               isRowHeader: false,
             },
@@ -82,17 +82,6 @@ const PromptContent = ({
         minWidth: 90,
         isRowHeader: false,
       },
-      ...(!isAdmin
-        ? [
-            {
-              id: "price",
-              label: "PRICE",
-              defaultWidth: 90,
-              minWidth: 80,
-              isRowHeader: false,
-            },
-          ]
-        : []),
       {
         id: "visibility",
         label: "VISIBILITY",
@@ -110,8 +99,8 @@ const PromptContent = ({
       {
         id: "action",
         label: "ACTIONS",
-        defaultWidth: 160,
-        minWidth: 140,
+        defaultWidth: 200,
+        minWidth: 150,
         isRowHeader: false,
       },
     ];
@@ -274,17 +263,6 @@ const PromptContent = ({
                         {item?.aiTool || "ChatGPT"}
                       </Table.Cell>
 
-                      {/* Price */}
-                      {!isAdmin && (
-                        <Table.Cell className="text-[#403535] font-bold">
-                          {Number(item?.price) === 0 ? (
-                            <span className="text-emerald-600">Free</span>
-                          ) : (
-                            `$${item?.price}`
-                          )}
-                        </Table.Cell>
-                      )}
-
                       {/* Visibility */}
                       <Table.Cell>
                         <div className="text-xs font-bold capitalize px-2 py-1 rounded-full border w-fit">
@@ -344,7 +322,6 @@ const PromptContent = ({
                                     variant="light"
                                     className="text-rose-600 hover:bg-rose-500/10 bg-rose-500/5"
                                     onClick={() => {
-                                      console.log("Button Clicked");
                                       setSelectedPrompt(item);
                                       setIsRejectModalOpen(true);
                                     }}

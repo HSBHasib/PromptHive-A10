@@ -1,4 +1,5 @@
 "use client";
+
 import { addReport } from "@/lib/action/reports";
 import { Button } from "@heroui/react";
 import React, { useState } from "react";

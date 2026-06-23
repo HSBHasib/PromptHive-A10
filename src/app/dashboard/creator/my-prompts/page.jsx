@@ -36,3 +36,4 @@ const CreatorPromptsData = async ({ searchParams }) => {
 };
 
 export default CreatorPromptsData;
+

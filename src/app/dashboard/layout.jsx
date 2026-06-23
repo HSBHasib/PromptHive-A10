@@ -1,8 +1,5 @@
 import DashboardSideBar from "@/components/dashboard/dashboardSideBard/DashboardSideBard";
-import { getUserSession } from "@/lib/core/session";
-import { redirect } from "next/navigation";
 import React from "react";
-
 const DashboardLayout = async ({ children }) => {
   return (
     <div className="min-h-screen flex overflow-hidden">
