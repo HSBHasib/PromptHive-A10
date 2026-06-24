@@ -1,36 +1,181 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 PromptHive
 
-## Getting Started
+An AI Prompt Sharing & Marketplace Platform built to help users discover, create, share, bookmark, and manage high-quality prompts for AI tools such as ChatGPT, Gemini, Claude, Midjourney, and more.
 
-First, run the development server:
+## 🌐 Live URL
+
+🔗 https://prompt-hive-gamma.vercel.app
+
+---
+
+## 🎯 Project Purpose
+
+PromptHive aims to build a modern community-driven ecosystem where users can exchange AI prompts securely and efficiently.
+
+The platform enables users to publish prompts, bookmark favorites, review creators, explore trending prompts, unlock premium content, and manage prompts through role-based dashboards.
+
+---
+
+## ✨ Key Features
+
+### 🔐 Authentication & Authorization
+
+- BetterAuth authentication
+- Google Social Login
+- JWT secured APIs
+- Protected Routes
+- Role-Based Access Control (User, Creator, Admin)
+- Persistent sessions after page refresh
+
+### 📝 Prompt Management
+
+- Create prompts
+- Update prompts
+- Delete prompts
+- Prompt moderation system
+- Public and Premium prompt visibility
+- Prompt analytics
+
+### 🔖 User Interactions
+
+- Bookmark prompts
+- Copy prompts
+- Submit reviews and ratings
+- Report inappropriate prompts
+- Premium access restrictions
+
+### 💳 Premium Subscription
+
+- Stripe one-time payment integration
+- Premium plan activation
+- Unlimited prompt creation
+- Access to premium/private prompts
+- Payment history and transaction details
+
+### 📊 Analytics Dashboard
+
+#### Creator Dashboard
+
+- Total prompts
+- Total copies
+- Total bookmarks
+- Prompt growth analytics
+- Charts with Recharts
+
+#### Admin Dashboard
+
+- Total users
+- Total prompts
+- Total reviews
+- Total copies
+- Revenue statistics
+- Reported prompts management
+
+### 🔍 Search & Discovery
+
+- Search by title
+- Search by tags
+- Search by AI tools
+- Server-side filtering
+- Sorting options
+- Pagination
+- Featured prompts
+- Top creators section
+
+### 👤 Profile Management
+
+- Update profile information
+- Change profile picture
+- Subscription status
+- Prompt statistics
+
+### 🎨 UI & UX
+
+- Fully Responsive Design
+- Framer Motion animations
+- Skeleton and Loading States
+- Custom Error Handling
+- 404 Page
+- Interactive Toast Notifications
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+
+- Next.js
+- JavaScript
+- Tailwind CSS
+- HeroUI
+- Framer Motion
+- Recharts
+- React Hot Toast
+- Axios
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- JWT
+- BetterAuth
+
+### Payment
+
+- Stripe
+
+### Image Hosting
+
+- ImgBB API
+
+---
+
+## 📦 NPM Packages Used
+
+### Frontend
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+next
+react
+tailwindcss
+@heroui/react
+framer-motion
+recharts
+axios
+react-hot-toast
+better-auth
+stripe
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Backend
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+express
+mongodb
+jsonwebtoken
+cors
+dotenv
+better-auth
+stripe
+multer
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧠 What I Learned
 
-To learn more about Next.js, take a look at the following resources:
+- JWT authentication with BetterAuth
+- Role-Based Access Control
+- MongoDB Aggregation Pipelines
+- Stripe Payment Integration
+- Analytics Dashboard Development
+- Pagination and Filtering Systems
+- Managing relationships between collections efficiently
+- Building scalable SaaS-inspired applications
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 👨‍💻 Author
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Hasibur Rahman
