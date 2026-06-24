@@ -94,38 +94,6 @@ const AddPromptContent = ({ user, planArr, currentPrompts }) => {
     }
   };
 
-  // return (
-  //   <div className="w-full max-w-3xl mx-auto bg-[#F5EBEB]/60 border border-[#86707020] rounded-3xl p-6 lg:p-10 shadow-sm text-[#867070]">
-  //     <div className="flex items-center gap-3 mb-8 border-b border-[#86707015] pb-4">
-  //       <LuSparkles className="w-6 h-6 text-[#867070]" />
-  //       <div>
-  //         <h1 className="text-xl lg:text-2xl font-bold">Create New Prompt</h1>
-  //         <p className="text-xs text-[#867070]/90 mt-0.5">
-  //           Share your amazing AI prompt with the community.
-  //         </p>
-  //       </div>
-  //     </div>
-
-  //     <div className="mb-6 bg-[#86707010] border border-[#86707020] rounded-xl p-4 flex items-start gap-3 text-xs font-semibold text-[#867070]/80">
-  //       <LuInfo className="w-4 h-4 shrink-0 mt-0.5 text-[#867070]" />
-  //       <p>
-  //         Note: All newly submitted prompts are automatically marked as{" "}
-  //         <span className="text-[#6B5656] font-bold">Pending</span> and remain
-  //         hidden from the marketplace until reviewed and approved by an admin.
-  //       </p>
-  //     </div>
-
-  //     {/* Form */}
-  //     <PromptForm 
-  //       onSubmit={onFormSubmit}
-  //       isSubmitting={isSubmitting}
-  //       imagePreview={imagePreview}
-  //       setImagePreview={setImagePreview}
-  //       handleImageChange={handleImageChange}
-  //     />
-  //   </div>
-  // );
-
   return (
     <div className="w-full max-w-3xl mx-auto bg-[#F5EBEB]/60 border border-[#86707020] rounded-3xl p-6 lg:p-10 shadow-sm text-[#867070]">
       
@@ -174,24 +142,6 @@ const AddPromptContent = ({ user, planArr, currentPrompts }) => {
 };
 
 export default AddPromptContent;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

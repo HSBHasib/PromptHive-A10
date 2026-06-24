@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi2";
+import { FaStar } from "react-icons/fa6";
 
 const TopCreatorContent = ({ creator, idx }) => {
   const {image, name, copyCount, averageRating } = creator || {};
@@ -25,12 +26,10 @@ const TopCreatorContent = ({ creator, idx }) => {
       {/* Image */}
       <div 
         className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 border-2 border-[#86707040] group-hover:border-[#867070] transition-colors duration-300 overflow-hidden flex items-center justify-center bg-white/20 mb-4 shadow-sm"
-        role="img"
-        aria-label={`${name || "Creator"}'s platform profile presentation box`}
       >
         <div className="relative w-full h-full rounded-full overflow-hidden">
           <Image
-            src={image}
+            src={image || "/"}
             alt={`${name || "Creator"} Avatar Picture View`}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -51,10 +50,9 @@ const TopCreatorContent = ({ creator, idx }) => {
       <div className="flex flex-col gap-1.5 w-full max-w-[150px]">
         <button 
           type="button"
-          className="bg-[#86707020] text-[#867070] text-[10px] sm:text-[11px] font-bold tracking-wider uppercase py-1 px-3 rounded-full border border-[#86707010] shadow-sm transition-colors group-hover:bg-[#867070] group-hover:text-white cursor-default"
-          aria-label={`Total submitted valid marketplace prompts amount is ${averageRating}`}
+          className="flex items-center justify-center gap-1 bg-[#86707020] text-[#867070] text-[10px] sm:text-[11px] font-bold tracking-wider uppercase py-1 px-3 rounded-full border border-[#86707010] shadow-sm transition-colors group-hover:bg-[#867070] group-hover:text-white cursor-default"
         >
-          {averageRating} Rating
+          <FaStar className="text-amber-500" /> Rating: {averageRating}
         </button>
         
         <button
@@ -72,3 +70,4 @@ const TopCreatorContent = ({ creator, idx }) => {
 };
 
 export default TopCreatorContent;
+

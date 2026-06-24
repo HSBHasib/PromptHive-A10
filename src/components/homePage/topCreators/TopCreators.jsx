@@ -1,22 +1,9 @@
 import React from "react";
 import TopCreatorContent from "./TopCreatorContent";
-import { getTrendingPrompts } from "@/lib/api/prompts";
-import { getUsers } from "@/lib/api/users";
+import { getTopCreator } from "@/lib/api/topCreators";
 
 const TopCreators = async () => {
-  const prompts = await getTrendingPrompts();
-  const users = await getUsers();
-
-  const topCreators = prompts
-    .map((prompt) => {
-      const creatorUser = users.data.find((u) => u._id === prompt.userId);
-      return {
-        ...prompt,
-        ...creatorUser, 
-      };
-    })
-    .slice(0, 4); 
-
+  const topCreators = await getTopCreator();
 
   return (
     <div className="pb-15 px-6 w-full">
@@ -33,11 +20,27 @@ const TopCreators = async () => {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-center">
-          {topCreators.map((creator, idx) => (
-            <TopCreatorContent key={creator._id} creator={creator} idx={idx} />
-          ))}
-        </div>
+        {topCreators && topCreators.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-center">
+            {topCreators.map((creator, idx) => (
+              <TopCreatorContent key={idx} creator={creator} idx={idx} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16 px-6 bg-[#86707005] border-2 border-dashed border-[#86707020] rounded-3xl">
+            <div className="flex flex-col items-center gap-3">
+              <span className="text-4xl">🌱</span>
+              <h3 className="text-xl font-bold text-[#867070]">
+                No Creators Found Yet
+              </h3>
+              <p className="text-sm text-[#86707080] max-w-sm">
+                Currently, there are no top creators available with active
+                prompts. Be the first one to create and share your amazing
+                prompts!
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
