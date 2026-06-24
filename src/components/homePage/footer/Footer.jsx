@@ -20,10 +20,10 @@ const Footer = () => {
 
   // Resources Links
   const resourcesLinks = [
-    { label: "Stripe API Billing", href: "https://stripe.com/en-sg" },
-    { label: "DevMeetsDevs Sync", href: "https://devmeetsdevs.com" },
-    { label: "JWT Cookie Policy", href: "https://www.jwt.io/" },
-    { label: "Prompt Moderation", href: "/moderation-rules" },
+    { label: "BetterAuth", href: "https://better-auth.com/" },
+    { label: "Stripe Payment", href: "https://docs.stripe.com/payments" },
+    { label: "JWT Web Tokens", href: "https://www.jwt.io/" },
+    { label: "Hero UI", href: "https://heroui.com/" },
   ];
 
   // Socail Links

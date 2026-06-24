@@ -7,10 +7,10 @@ const Register = async ({ searchParams }) => {
   const user = await getUserSession();
   const srcParams = await searchParams;
 
-  console.log('data is - ', user)
   if (user) {
     redirect(`/`);
   }
+  
   return (
     <div className="min-h-screen">
       <RegisterContent srcParams={srcParams} />
