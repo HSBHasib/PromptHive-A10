@@ -6,7 +6,7 @@ const CopiesChart = ({ data }) => {
 
   if (!hasAnalytics) {
     return (
-      <div className="h-64 w-full flex flex-col items-center justify-center text-sm font-semibold text-[#86707080] bg-white rounded-2xl border border-dashed border-[#86707030] p-6 text-center">
+      <div className="h-64 w-full flex flex-col items-center justify-center text-sm font-semibold text-[#86707080] bg-white/40 rounded-2xl border border-dashed border-[#86707030] p-6 text-center">
         <p>No copies or bookmarks recorded yet for your templates.</p>
       </div>
     );

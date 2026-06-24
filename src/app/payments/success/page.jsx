@@ -3,16 +3,12 @@ import { LiaCheckCircle } from "react-icons/lia";
 import Link from "next/link";
 import { stripe } from "@/lib/stripe";
 import { addSubcription } from "@/lib/action/subcriptions";
-import { getUserSession } from "@/lib/core/session";
 
 const PaymentSuccessfulPage = async ({ searchParams }) => {
   const { session_id } = await searchParams;
   const session = await stripe.checkout.sessions.retrieve(session_id, {
     expand: ["payment_intent"],
   });
-
-  const user = getUserSession();
-  const role = user?.role || "user";
 
   const transactionData = {
     transactionId: session.payment_intent?.id,
@@ -83,7 +79,7 @@ const PaymentSuccessfulPage = async ({ searchParams }) => {
         {/* Action Button */}
         <div className="flex flex-col gap-3">
           <Link
-            href={`/dashboard/${role}/profile`}
+            href={`/`}
             className="bg-stone-800 text-white text-sm font-bold py-3 px-6 rounded-xl hover:bg-stone-900 transition"
           >
             Back to Profile

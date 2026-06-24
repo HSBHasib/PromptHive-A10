@@ -37,13 +37,16 @@ const FeaturedPrompts = async () => {
         {/* Featured Data in form of Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {trendingPrompts.map((prompt, idx) => (
-            <FeaturedPromptCard
-              key={prompt._id}
-              prompt={prompt}
-              user={user}
-              isUserLoggedIn={!!userSession}
-              idx={idx}
-            />
+            <div key={idx}>
+              {prompt.status === "approved" && (
+                <FeaturedPromptCard
+                  prompt={prompt}
+                  user={user}
+                  isUserLoggedIn={!!userSession}
+                  idx={idx}
+                />
+              )}
+            </div>
           ))}
         </div>
       </div>
@@ -52,4 +55,3 @@ const FeaturedPrompts = async () => {
 };
 
 export default FeaturedPrompts;
-
