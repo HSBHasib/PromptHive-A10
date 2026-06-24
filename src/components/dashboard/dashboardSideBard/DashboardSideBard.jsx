@@ -250,7 +250,7 @@ export default function DashboardSideBar() {
             </Drawer.Content>
           </Drawer>
 
-          <span className="text-sm font-bold text-[#867070] tracking-tight">
+          <span className="text-base font-bold text-[#867070] tracking-tight">
             <Link href="/">PromptHive</Link>
           </span>
         </div>

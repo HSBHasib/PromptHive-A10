@@ -1,13 +1,21 @@
-import RegisterContent from '@/components/register/RegisterContent'
-import React from 'react'
+import RegisterContent from "@/components/register/RegisterContent";
+import { getUserSession } from "@/lib/core/session";
+import { redirect } from "next/navigation";
+import React from "react";
 
-const Register = async ({searchParams}) => {
+const Register = async ({ searchParams }) => {
+  const user = await getUserSession();
   const srcParams = await searchParams;
+
+  console.log('data is - ', user)
+  if (user) {
+    redirect(`/`);
+  }
   return (
-    <div className='min-h-screen'>
+    <div className="min-h-screen">
       <RegisterContent srcParams={srcParams} />
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
