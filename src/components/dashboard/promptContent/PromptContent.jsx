@@ -40,6 +40,8 @@ const PromptContent = ({
   reviews,
   totalReview
 }) => {
+
+
   const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
   const [rejectionReason, setRejectionReason] = useState("");
   const [selectedPrompt, setSelectedPrompt] = useState(null);
@@ -53,7 +55,6 @@ const PromptContent = ({
       {
         id: "promptTitle",
         label: "PROMPT TITLE",
-        defaultWidth: 300,
         minWidth: 200,
         isRowHeader: true,
       },
@@ -62,7 +63,6 @@ const PromptContent = ({
             {
               id: "creator",
               label: "CREATOR",
-              defaultWidth: 300,
               minWidth: 150,
               isRowHeader: false,
             },
@@ -71,36 +71,31 @@ const PromptContent = ({
       {
         id: "category",
         label: "CATEGORY",
-        defaultWidth: 130,
         minWidth: 100,
         isRowHeader: false,
       },
       {
         id: "aiTool",
         label: "AI TOOL",
-        defaultWidth: 110,
         minWidth: 90,
         isRowHeader: false,
       },
       {
         id: "visibility",
         label: "VISIBILITY",
-        defaultWidth: 110,
         minWidth: 90,
         isRowHeader: false,
       },
       {
         id: "status",
         label: "STATUS",
-        defaultWidth: 110,
         minWidth: 90,
         isRowHeader: false,
       },
       {
         id: "action",
         label: "ACTIONS",
-        defaultWidth: 200,
-        minWidth: 150,
+        minWidth: 130,
         isRowHeader: false,
       },
     ];
