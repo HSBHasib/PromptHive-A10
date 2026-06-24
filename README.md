@@ -176,16 +176,6 @@ multer
 
 ---
 
-## 🚀 Future Improvements
-
-- AI-generated prompt recommendations
-- Creator follower system
-- Team collaboration support
-- Prompt version history
-- Advanced moderation tools
-
----
-
 ## 👨‍💻 Author
 
 Hasibur Rahman
