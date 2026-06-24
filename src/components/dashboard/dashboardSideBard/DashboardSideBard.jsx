@@ -20,7 +20,6 @@ import { LuLayoutDashboard, LuLogOut } from "react-icons/lu";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
-
 export default function DashboardSideBar() {
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
@@ -31,7 +30,7 @@ export default function DashboardSideBar() {
     try {
       await authClient.signOut();
       toast.success("Logged out successfully!", { duration: 1500 });
-      window.location.reload(); 
+      window.location.reload();
     } catch (err) {
       toast.error("Logout runtime error.");
     }
@@ -204,7 +203,10 @@ export default function DashboardSideBar() {
         })}
       </nav>
 
-      <button onClick={handleSignOut} className="flex justify-center items-center justify-between rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 gap-1.5 bg-[#867070]/90 text-white hover:bg-[#867070] cursor-pointer shadow-sm">
+      <button
+        onClick={handleSignOut}
+        className="flex justify-center items-center justify-between rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 gap-1.5 bg-[#867070]/90 text-white hover:bg-[#867070] cursor-pointer shadow-sm"
+      >
         <LuLogOut size={16} /> Logout
       </button>
     </div>
@@ -249,7 +251,7 @@ export default function DashboardSideBar() {
           </Drawer>
 
           <span className="text-sm font-bold text-[#867070] tracking-tight">
-            PromptHive
+            <Link href="/">PromptHive</Link>
           </span>
         </div>
 
