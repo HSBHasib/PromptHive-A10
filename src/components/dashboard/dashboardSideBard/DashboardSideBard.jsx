@@ -205,7 +205,7 @@ export default function DashboardSideBar() {
 
       <button
         onClick={handleSignOut}
-        className="flex justify-center items-center justify-between rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 gap-1.5 bg-[#867070]/90 text-white hover:bg-[#867070] cursor-pointer shadow-sm"
+        className="flex justify-center items-center rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 gap-1.5 bg-[#867070]/90 text-white hover:bg-[#867070] cursor-pointer shadow-sm"
       >
         <LuLogOut size={16} /> Logout
       </button>

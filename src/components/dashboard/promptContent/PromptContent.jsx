@@ -381,7 +381,7 @@ const PromptContent = ({
               Page {currentPage}
             </span>
             <button
-              disabled={prompts.length < 4}
+              disabled={currentPage >= totalPrompts}
               onClick={() => handlePageChange(currentPage + 1)}
               className="text-xs text-stone-600 hover:bg-[#867070]/15 hover:text-stone-800 rounded-lg px-3 py-1.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1 font-semibold transition-all duration-200"
             >
