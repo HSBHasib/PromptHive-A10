@@ -8,8 +8,9 @@ import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-const LoginContent = () => {
+const LoginContent = ({redirectTo}) => {
   const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
 
@@ -36,7 +37,7 @@ const LoginContent = () => {
 
       if (data) {
         toast.success("Welcome back! Logged in successful.");
-        router.push("/"); 
+        router.push(redirectTo); 
       }
     } catch (error) {
       toast.error("Something went wrong during login.");
@@ -48,7 +49,7 @@ const LoginContent = () => {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/",
+        callbackURL: redirectTo,
       });
     } catch (error) {
       console.error("Google Auth Error:", error);
@@ -160,12 +161,12 @@ const LoginContent = () => {
 
         <p className="text-center text-sm text-[#867070]/80 mt-6">
           Don't have an account?{" "}
-          <a
-            href="/auth/register"
+          <Link
+            href={`/auth/register?redirect=${redirectTo}`}
             className="font-semibold text-[#867070] hover:underline"
           >
             Register
-          </a>
+          </Link>
         </p>
       </div>
     </div>

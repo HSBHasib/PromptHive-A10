@@ -9,13 +9,14 @@ import { FiUpload } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { uploadImageToImgBB } from "@/lib/core/ImageBB";
-import { router } from "better-auth/api";
 import { useRouter } from "next/navigation";
 
-const RegisterContent = () => {
+const RegisterContent = ({ srcParams }) => {
   const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
-
+  const redirectTo = srcParams.redirect || "/auth/login";
+  const redirectFromGoogleTo = srcParams.redirect || "/";
+ 
   const {
     register,
     handleSubmit,
@@ -23,7 +24,6 @@ const RegisterContent = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const IMGBB_API_KEY = process.env.NEXT_PUBLIC_Logo_API;
 
   const onSubmit = async (formDataValues) => {
     const { name, email, password } = formDataValues;
@@ -66,7 +66,7 @@ const RegisterContent = () => {
       // After successfully register
       if (data) {
         reset(),
-        router.push("/auth/login")
+        router.push(redirectTo)
         toast.success("Account created successfully!");
       }
     } catch (error) {
@@ -79,7 +79,7 @@ const RegisterContent = () => {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/",
+        callbackURL: redirectFromGoogleTo,
       });
     } catch (error) {
       toast.error("Google login failed.");
@@ -246,7 +246,7 @@ const RegisterContent = () => {
         <p className="text-center text-sm text-[#867070]/80 mt-6">
           Already have an account?{" "}
           <a
-            href="/auth/login"
+            href={`/auth/login?redirect=${redirectTo}`}
             className="font-semibold text-[#867070] hover:underline"
           >
             Log In

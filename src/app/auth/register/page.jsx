@@ -1,11 +1,12 @@
 import RegisterContent from '@/components/register/RegisterContent'
 import React from 'react'
 
-const Register = () => {
+const Register = async ({searchParams}) => {
+  const srcParams = await searchParams;
   return (
-    <>
-      <RegisterContent />
-    </>
+    <div className='min-h-screen'>
+      <RegisterContent srcParams={srcParams} />
+    </div>
   )
 }
 

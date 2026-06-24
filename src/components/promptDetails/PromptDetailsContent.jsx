@@ -9,7 +9,7 @@ const PromptDetailsContent = ({
   user,
   initialBookmarkStatus,
   reviews,
-  totalReview
+  totalReview,
 }) => {
   const isPrivate = prompt?.visibility === "private";
   const isPremiumUser = user?.plan === "pro";

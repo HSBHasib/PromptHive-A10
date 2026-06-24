@@ -5,10 +5,12 @@ import {
   RiLinkedinBoxFill,
 } from "react-icons/ri";
 import { MdPerson4 } from "react-icons/md";
+import { getUserSession } from "@/lib/core/session";
 
 
 const Footer = () => {
   // Platform Links
+
   const platformLinks = [
     { label: "Home", href: "/" },
     { label: "All Prompts", href: "/all-prompts" },

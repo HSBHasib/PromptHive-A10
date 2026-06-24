@@ -22,16 +22,12 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
     averageRating,
     thumbnail,
     visibility,
-    status,
     userId,
     _id,
   } = prompt || {};
 
   // Filter User Data based on Prompt UserId
   const filterUser = user.filter((u) => u?._id === userId);
-
-  // If user not loggedIn
-  const targetDetailsRoute = isUserLoggedIn ? `/prompt/${_id}` : "/auth/login";
 
   // Check Visibily is private
   const isPremium = visibility === "private";
@@ -151,7 +147,7 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
             ))}
 
             <Button className="bg-[#867070] hover:bg-[#705C5C] text-white font-bold text-xs h-9 px-4 rounded-xl transition-all duration-200 shadow-sm active:scale-95">
-              <Link href={targetDetailsRoute}>View Details</Link>
+              <Link href={`/prompt/${_id}`}>View Details</Link>
             </Button>
           </div>
         </div>

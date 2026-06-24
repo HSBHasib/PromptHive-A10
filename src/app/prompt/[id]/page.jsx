@@ -7,12 +7,19 @@ import { getUserSession } from "@/lib/core/session";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import RouterBack from "@/components/reUseAbleComponent/Router";
 import { getReviews } from "@/lib/api/reviews";
+import { redirect } from "next/navigation";
 
 const PromptDetails = async ({ params }) => {
   const { id } = await params;
+  const user = await getUserSession();
+
+  // If User not Logged In
+  if(!user) {
+    redirect(`/auth/login?redirect=/prompt/${id}`);
+  }
+
   const { data: allPrompts } = await getPrompts();
   const { data: allUsers } = await getUsers();
-  const user = await getUserSession();
   const currentUserId = user?.id;
 
   const singlePrompt = allPrompts.find((p) => p._id === id);

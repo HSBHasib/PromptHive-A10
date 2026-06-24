@@ -1,10 +1,16 @@
 import { getUserSession } from "@/lib/core/session";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { LiaCheckCircle } from "react-icons/lia";
 
 const CheckoutForm = async () => {
   const user = await getUserSession();
-  const isExits = !user;
+
+  // If user nor loggedIn
+  if(!user) {
+    redirect("/auth/login?redirect=/payments")
+  }
+
   return (
     <div className="bg-[#E5DCDC] p-8 rounded-3xl border border-stone-200 shadow-sm w-full max-w-md">
       <div className="flex justify-between items-end mb-6">
@@ -39,11 +45,7 @@ const CheckoutForm = async () => {
                 role="link"
                 className="bg-[#867070]/90 text-white font-bold w-full p-4 rounded-xl mt-4 hover:bg-[#867070] transition shadow-lg"
               >
-                {isExits ? (
-                  <Link href="/auth/login">Proceed to Secure Payment</Link>
-                ) : (
                   <span>Proceed to Secure Payment</span>
-                )}
               </button>
             </section>
           </form>
