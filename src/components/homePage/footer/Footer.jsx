@@ -5,7 +5,6 @@ import {
   RiLinkedinBoxFill,
 } from "react-icons/ri";
 import { MdPerson4 } from "react-icons/md";
-import { getUserSession } from "@/lib/core/session";
 
 
 const Footer = () => {

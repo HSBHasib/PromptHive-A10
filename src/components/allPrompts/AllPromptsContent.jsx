@@ -271,18 +271,17 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
       {/* Cards Section */}
       {promptsData.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {promptsData.map((prompt, idx) => (
-            <div key={idx}>
-              {prompt.status === "approved" && (
-                <FeaturedPromptCard
-                  prompt={prompt}
-                  user={users}
-                  isUserLoggedIn={isUserLoggedIn}
-                  idx={idx}
-                />
-              )}
-            </div>
-          ))}
+          {promptsData
+            .filter((prompt) => prompt.status === "approved")
+            .map((prompt, idx) => (
+              <FeaturedPromptCard
+                key={idx}
+                prompt={prompt}
+                user={users}
+                isUserLoggedIn={isUserLoggedIn}
+                idx={idx}
+              />
+            ))}
         </div>
       ) : (
         <div className="text-center py-20 text-[#86707090] font-medium bg-white/20 rounded-3xl border border-dashed border-[#86707030]">
