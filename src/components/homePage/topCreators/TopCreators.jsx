@@ -1,16 +1,25 @@
 import React from "react";
 import TopCreatorContent from "./TopCreatorContent";
-import { getPrompts } from "@/lib/api/prompts";
+import { getTrendingPrompts } from "@/lib/api/prompts";
 import { getUsers } from "@/lib/api/users";
 
 const TopCreators = async () => {
-  const { data: prompts, totalPrompts, totalCopies } = await getPrompts();
-  const { data: users } = await getUsers();
+  const prompts = await getTrendingPrompts();
+  const users = await getUsers();
 
-  const fakeCreatorsFromDB = []
+  const topCreators = prompts
+    .map((prompt) => {
+      const creatorUser = users.data.find((u) => u._id === prompt.userId);
+      return {
+        ...prompt,
+        ...creatorUser, 
+      };
+    })
+    .slice(0, 4); 
+
 
   return (
-    <div className="pb-15 px-6 w-full select-none">
+    <div className="pb-15 px-6 w-full">
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
         {/* Heading*/}
         <div className="text-center flex flex-col gap-2">
@@ -25,7 +34,7 @@ const TopCreators = async () => {
 
         {/* Cards */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-center">
-          {fakeCreatorsFromDB.map((creator, idx) => (
+          {topCreators.map((creator, idx) => (
             <TopCreatorContent key={creator._id} creator={creator} idx={idx} />
           ))}
         </div>

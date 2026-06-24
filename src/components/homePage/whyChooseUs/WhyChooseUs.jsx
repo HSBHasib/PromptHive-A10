@@ -28,7 +28,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <div className="bg-[#F5EBEB] py-5 px-6 w-full select-none overflow-hidden">
+    <div className="bg-[#F5EBEB] py-5 px-6 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         
         <motion.div 

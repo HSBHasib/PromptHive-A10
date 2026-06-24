@@ -8,12 +8,12 @@ import { getUsers } from "@/lib/api/users";
 
 const FeaturedPrompts = async () => {
   const userSession = await getUserSession();
-  
-  const trendingPrompts = await getTrendingPrompts() || [];
-  const { data: user } = await getUsers()
+
+  const trendingPrompts = (await getTrendingPrompts()) || [];
+  const { data: user } = await getUsers();
 
   return (
-    <div className="bg-[#EFE2E2] my-13 py-14 px-6 w-full select-none">
+    <div className="bg-[#EFE2E2] my-13 py-14 px-6 w-full">
       <div className="max-w-7xl mx-auto flex flex-col gap-8">
         {/* Header Section */}
         <div className="flex flex-row flex-wrap gap-2 items-end justify-between">

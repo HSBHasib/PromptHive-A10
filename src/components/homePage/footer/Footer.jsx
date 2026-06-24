@@ -44,7 +44,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#121214] text-[#F5EBEB] pt-16 pb-8 px-6 w-full select-none overflow-hidden border-t border-white/5">
+    <footer className="bg-[#121214] text-[#F5EBEB] pt-16 pb-8 px-6 w-full overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
         {/* TOP ROW SECTION: Grid Columns Distributing Brand Descriptors & Navigation Links */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 w-full">

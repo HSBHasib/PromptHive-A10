@@ -157,7 +157,7 @@ const PromptForm = ({ initialData = null, onSubmit, isSubmitting, imagePreview, 
             </label>
             <div
               onClick={() => setIsCatOpen(!isCatOpen)}
-              className="w-full bg-white/50 border border-[#86707030] rounded-xl h-11 px-3 flex items-center justify-between cursor-pointer select-none text-sm font-medium transition-all hover:bg-white/80"
+              className="w-full bg-white/50 border border-[#86707030] rounded-xl h-11 px-3 flex items-center justify-between cursor-pointer text-sm font-medium transition-all hover:bg-white/80"
             >
               <span
                 className={
@@ -197,7 +197,7 @@ const PromptForm = ({ initialData = null, onSubmit, isSubmitting, imagePreview, 
             </label>
             <div
               onClick={() => setIsToolOpen(!isToolOpen)}
-              className="w-full bg-white/50 border border-[#86707030] rounded-xl h-11 px-3 flex items-center justify-between cursor-pointer select-none text-sm font-medium transition-all hover:bg-white/80"
+              className="w-full bg-white/50 border border-[#86707030] rounded-xl h-11 px-3 flex items-center justify-between cursor-pointer text-sm font-medium transition-all hover:bg-white/80"
             >
               <span
                 className={

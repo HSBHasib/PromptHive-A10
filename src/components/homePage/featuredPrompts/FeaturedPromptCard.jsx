@@ -19,18 +19,21 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
     category,
     difficulty,
     copyCount,
-    price,
     averageRating,
     thumbnail,
+    visibility,
     userId,
     _id,
   } = prompt || {};
 
-  const filterUser = user.filter((u) => u._id === userId);
+  // Filter User Data based on Prompt UserId
+  const filterUser = user.filter((u) => u?._id === userId);
 
-  const targetDetailsRoute = isUserLoggedIn ? `/prompt/${_id}` : "/auth/signin";
+  // If user not loggedIn
+  const targetDetailsRoute = isUserLoggedIn ? `/prompt/${_id}` : "/auth/login";
 
-  const isPremium = price && parseFloat(price) > 0;
+  // Check Visibily is private
+  const isPremium = visibility === "private";
 
   return (
     <motion.div
@@ -63,6 +66,8 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
         )}
 
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4 w-full">
+          
+          {/* AiTool and Category */}
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-bold text-[#867070] bg-[#86707015] tracking-wider uppercase px-3 py-1 rounded-full">
               {aiTool}
@@ -72,13 +77,14 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
             </span>
           </div>
 
+          {/* Check visibity and show data based on data */}
           <div className="flex items-center gap-2">
             {isPremium ? (
-              <span className="bg-[#86707015] text-amber-700 border text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
-                <HiOutlineLockClosed className="text-xs" /> ${price}
+              <span className="bg-[#86707015] text-amber-700 border text-[11px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
+                <HiOutlineLockClosed className="text-xs" /> PREMIUM
               </span>
             ) : (
-              <span className="bg-emerald-500/10 text-emerald-700 border border-emerald-500/20 text-[10px] font-bold px-2 py-0.5 rounded-md">
+              <span className="bg-emerald-500/10 text-emerald-700 border border-emerald-500/20 text-[11px] font-bold px-2 py-0.5 rounded-md">
                 FREE
               </span>
             )}
@@ -92,10 +98,12 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
           </div>
         </div>
 
+        {/* Prompt Title */}
         <h3 className="text-lg font-bold text-[#867070] tracking-tight group-hover:text-[#6B5656] transition-colors leading-snug line-clamp-2">
           {title}
         </h3>
 
+        {/* Prompt Description */}
         <p className="text-xs text-[#867070] leading-relaxed mt-2 line-clamp-3">
           {description}
         </p>
@@ -108,7 +116,7 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
           <div className="flex items-center gap-1 text-amber-600 bg-amber-500/5 px-2 py-0.5 rounded-md border border-amber-500/10">
             <HiOutlineStar className="text-sm fill-amber-500 text-amber-500" />
             <span key={idx} className="font-bold text-[#867070]">
-              {averageRating}
+              {averageRating.toFixed(1)}
             </span>
           </div>
           <div className="flex items-center gap-1.5 text-[#867070]">
@@ -119,11 +127,11 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
           </div>
         </div>
 
-        {/* Avatar and view button */}
+        {/* User Profile Details and button to access prompts details page */}
         <div className="flex items-center justify-between gap-2 w-full">
           {filterUser?.map((creator, idx) => (
             <div key={idx} className="flex items-center gap-2.5 min-w-0">
-              <Avatar className="w-8 h-8 rounded-full border border-[#86707030] bg-[#86707010] flex-shrink-0 text-[11px] font-bold text-[#867070]">
+              <Avatar className="w-9 h-9 rounded-full border border-[#86707030] bg-[#86707010] flex-shrink-0 text-[11px] font-bold text-[#867070]">
                 {creator?.image && (
                   <Avatar.Image
                     src={creator.image}

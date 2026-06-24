@@ -1,5 +1,5 @@
-const { serverFetch } = require("../core/server")
+const { protectedFetch } = require("../core/server")
 
 export const getSubcriptions = async () => {
-    return serverFetch(`/api/subcriptions`)
+    return protectedFetch(`/api/subcriptions`)
 }

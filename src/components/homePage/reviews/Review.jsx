@@ -6,7 +6,7 @@ const Review = async () => {
     const {reviews} = await getReviews();
     const reviewData = reviews.slice(0, 3);
   return (
-    <div className="pt-10 pb-20 px-6 w-full select-none">
+    <div className="pt-10 pb-20 px-6 w-full">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         
         {/* Central Layout Text Header Block matching your exact font weights */}

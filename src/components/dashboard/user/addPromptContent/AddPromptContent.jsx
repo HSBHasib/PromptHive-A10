@@ -13,7 +13,6 @@ const AddPromptContent = ({ user, planArr, currentPrompts }) => {
   const [imagePreview, setImagePreview] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
-
   
   const plan = planArr[0];
   
@@ -25,7 +24,7 @@ const AddPromptContent = ({ user, planArr, currentPrompts }) => {
   const isPro = plan?.plan === "pro";
   const maxLimit = plan?.maxLimit || 3;
   const remaining = maxLimit - currentPrompts;
-  const canAdd = isPro;
+  const canAdd = isPro || remaining > 0;
 
 
   // 💡 React Hook Form onSubmit handler

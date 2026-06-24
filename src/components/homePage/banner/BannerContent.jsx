@@ -3,13 +3,28 @@
 import { Button, SearchField } from "@heroui/react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const BannerContent = ({ searchQuery, setSearchQuery, handleSearchSubmit }) => {
+const BannerContent = () => {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Handle Search Func 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery && searchQuery.trim()) {
+      router.push(`/all-prompts?search=${encodeURIComponent(searchQuery)}`);
+    } else {
+      router.push("/all-prompts");
+    }
+  };
+
   // Trending tags
   const trendingTags = ["#ChatGPT", "#Midjourney", "#Claude", "#Gemini"];
 
   return (
-    <div className=" relative max-h-screen flex items-center justify-center px-4 py-14 overflow-hidden select-none">
+    <div className=" relative max-h-screen flex items-center justify-center px-4 py-14 overflow-hidden">
       {/* Decorative Wave Background Graphic */}
       <div className="absolute inset-x-0 bottom-0 pointer-events-none opacity-70">
         <svg
@@ -63,7 +78,7 @@ const BannerContent = ({ searchQuery, setSearchQuery, handleSearchSubmit }) => {
               <SearchField
                 className="bg-transparent w-full"
                 fullWidth
-                name="search"
+                onChange={(val) => setSearchQuery(val)}
                 aria-label="Search prompts marketplace directory by keyword, tools, or tag metadata parameters"
               >
                 <SearchField.Group className="bg-transparent border-none shadow-none text-[#867070] focus-within:ring-0">
@@ -71,7 +86,7 @@ const BannerContent = ({ searchQuery, setSearchQuery, handleSearchSubmit }) => {
 
                   <SearchField.Input
                     placeholder="Search by title, tag or Ai tools.... "
-                    className="bg-transparent text-[#867070] placeholder-[#86707075] border-none outline-none focus:outline-none focus:ring-0 w-full  text-sm sm:text-base pr-2"
+                    className="bg-transparent text-[#867070] placeholder-[#86707075] border-none outline-none focus:outline-none focus:ring-0 w-full text-sm sm:text-base pr-2"
                   />
 
                   <SearchField.ClearButton className="text-[#86707080] hover:text-[#867070] transition-colors" />
@@ -126,4 +141,3 @@ const BannerContent = ({ searchQuery, setSearchQuery, handleSearchSubmit }) => {
 };
 
 export default BannerContent;
-

@@ -43,7 +43,7 @@ const StepsToMastery = () => {
   };
 
   return (
-    <div className="bg-[#EFE2E2] py-15 my-15 px-6 w-full select-none overflow-hidden">
+    <div className="bg-[#EFE2E2] py-15 my-15 px-6 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Side Content */}
         <LeftSideContent data={data} />

@@ -66,7 +66,7 @@ const PromptContent = ({
     <>
       <div className="bg-white/40 p-8 rounded-2xl shadow-sm border border-stone-200">
         <div className="flex justify-between items-start mb-2">
-          <h1 className="text-3xl font-bold text-stone-700">{prompt?.title}</h1>
+          <h1 className="text-3xl font-bold text-stone-700 max-w-[80%]">{prompt?.title}</h1>
           <div className="flex gap-2">
             <button
               className={`p-2 transition cursor-pointer rounded-lg bg-[#F5EBEB]/80 hover:bg-[#F5EBEB] border ${
@@ -110,7 +110,7 @@ const PromptContent = ({
 
         <div className="relative rounded-xl border border-stone-200 overflow-hidden">
           <div
-            className={`bg-stone-50 p-4 h-40 ${!canAccessPrivate ? "blur-md select-none pointer-events-none" : ""}`}
+            className={`bg-stone-50 p-4 h-40 ${!canAccessPrivate ? "blur-md pointer-events-none" : ""}`}
           >
             <p className="text-stone-800 whitespace-pre-wrap text-sm">
               {prompt?.content}

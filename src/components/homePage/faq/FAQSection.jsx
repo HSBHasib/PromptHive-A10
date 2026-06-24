@@ -32,7 +32,7 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="py-15 px-6 w-full select-none bg-[#F3E8E8]">
+    <div className="py-15 px-6 w-full bg-[#F3E8E8]">
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
 
          {/* Heading */}

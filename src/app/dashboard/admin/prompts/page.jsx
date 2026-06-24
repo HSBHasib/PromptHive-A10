@@ -42,3 +42,4 @@ const UserPromptsData = async ({ searchParams }) => {
 };
 
 export default UserPromptsData;
+

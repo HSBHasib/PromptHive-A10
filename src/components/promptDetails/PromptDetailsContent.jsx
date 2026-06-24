@@ -28,7 +28,7 @@ const PromptDetailsContent = ({
       </div>
 
       <div className="lg:col-span-1">
-        <PromptDetails prompt={prompt} creator={creator} reviews={reviews} />
+        <PromptDetails prompt={prompt} creator={creator} />
         <PromptReview promptId={prompt?._id} reviews={reviews} totalReview={totalReview} />
       </div>
     </div>

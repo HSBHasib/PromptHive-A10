@@ -9,10 +9,8 @@ import { IoRefreshOutline } from "react-icons/io5";
 
 const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
   const router = useRouter();
-  
+
   const [searchInput, setSearchInput] = useState(filters.search || "");
-
-
   const itemsPerPage = 9;
   const promptsData = prompts?.prompts || [];
   const totalItems = prompts?.totalItems || 0;
@@ -30,20 +28,25 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
     "Lifestyle & Creative Writing",
     "Customer Support & HR",
   ];
+
   const aiTools = ["ChatGPT", "Midjourney", "Claude", "Gemini"];
   const difficulties = ["Beginner", "Intermediate", "Pro"];
+  const sorting = ["latest", "popular", "copied"];
 
   useEffect(() => {
     setSearchInput(filters.search || "");
   }, [filters.search]);
 
-  // Update Search Result
   const updateFilters = (updatedFields) => {
-    const sp = new URLSearchParams();
-    const currentFilters = { ...filters, ...updatedFields };
+    const sp = new URLSearchParams(window.location.search);
 
-    if (currentFilters.search) sp.set("search", currentFilters.search);
-    if (currentFilters.page > 1) sp.set("page", currentFilters.page);
+    Object.keys(updatedFields).forEach((key) => {
+      if (updatedFields[key]) {
+        sp.set(key, updatedFields[key]);
+      } else {
+        sp.delete(key);
+      }
+    });
 
     router.push(`?${sp.toString()}`);
   };
@@ -62,9 +65,10 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
   // Reset Button
   const handleReset = () => {
     setSearchInput("");
-    router.push("?");
+    router.push("/all-prompts");
   };
 
+  // For Pagination
   const handlePageChange = (newPage) => {
     if (newPage === filters.page) return;
     updateFilters({ page: newPage });
@@ -82,7 +86,8 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
     return pages;
   };
 
-  const startItem = totalItems === 0 ? 0 : (filters.page - 1) * itemsPerPage + 1;
+  const startItem =
+    totalItems === 0 ? 0 : (filters.page - 1) * itemsPerPage + 1;
   const endItem = Math.min(filters.page * itemsPerPage, totalItems);
 
   return (
@@ -110,115 +115,156 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
         </div>
 
         {/* Filter Section */}
-        <div className="flex flex-wrap items-center gap-3 w-full">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 w-full">
           {/* Category Filter */}
-          <Select
-            className="w-full sm:w-auto sm:min-w-[180px]"
-            placeholder="All Categories"
-          >
-            <Select.Trigger className="w-full flex items-center justify-between bg-[#E4D5D5] hover:bg-[#DED0D0] border border-[#86707020] rounded-xl h-10 text-xs font-semibold text-[#635252] px-4 shadow-none transition-all cursor-pointer">
-              <Select.Value />
-              <Select.Indicator />
-            </Select.Trigger>
-
-            <Select.Popover className="border border-[#86707015] bg-white rounded-xl shadow-xl overflow-hidden p-1 w-[var(--trigger-width)] sm:max-w-[280px]">
-              <ListBox className="max-h-[240px] overflow-y-auto outline-none pr-1 scrollbar-thin scrollbar-thumb-[#86707040] scrollbar-track-transparent">
-                <ListBox.Item
-                  id="all"
-                  textValue="All Categories"
-                  className="text-xs font-bold text-[#635252] rounded-lg p-2.5 my-0.5 cursor-pointer hover:bg-[#86707015] focus:bg-[#86707015] outline-none transition-colors"
-                >
-                  All Categories
-                </ListBox.Item>
-
-                {categories.map((cat) => (
-                  <ListBox.Item
-                    key={cat}
-                    id={cat}
-                    textValue={cat}
-                    className="text-xs font-medium text-[#867070] rounded-lg p-2.5 my-0.5 cursor-pointer hover:bg-[#86707010] focus:bg-[#86707010] outline-none transition-colors"
-                  >
-                    {cat}
-                  </ListBox.Item>
-                ))}
-              </ListBox>
-            </Select.Popover>
-          </Select>
-
-          {/* AI Tool Filter */}
-          <Select
-            className="w-auto min-w-[140px]"
-            placeholder="All AI Tools"
-          >
-            <Select.Trigger className="bg-[#E4D5D5] hover:bg-[#DED0D0] border border-[#86707020] rounded-lg h-9 text-xs font-semibold text-[#635252] px-4 shadow-none transition-all">
-              <Select.Value />
-              <Select.Indicator />
-            </Select.Trigger>
-            <Select.Popover className="border border-[#86707015] bg-white rounded-xl shadow-xl overflow-hidden p-1">
-              <ListBox>
-                <ListBox.Item
-                  id="all"
-                  textValue="All AI Tools"
-                  className="text-xs font-semibold text-[#867070] rounded-lg"
-                >
-                  All AI Tools
-                </ListBox.Item>
-                {aiTools.map((tool) => (
-                  <ListBox.Item
-                    key={tool}
-                    id={tool}
-                    textValue={tool}
-                    className="text-xs text-[#867070] rounded-lg hover:bg-[#86707010]"
-                  >
-                    {tool}
-                  </ListBox.Item>
-                ))}
-              </ListBox>
-            </Select.Popover>
-          </Select>
-
-          {/* Difficulty Filter */}
-          <Select
-            className="w-auto min-w-[140px]"
-            placeholder="Difficulty Level"
-          >
-            <Select.Trigger className="bg-[#E4D5D5] hover:bg-[#DED0D0] border border-[#86707020] rounded-lg h-9 text-xs font-semibold text-[#635252] px-4 shadow-none transition-all">
-              <Select.Value />
-              <Select.Indicator />
-            </Select.Trigger>
-            <Select.Popover className="border border-[#86707015] bg-white rounded-xl shadow-xl overflow-hidden p-1">
-              <ListBox>
-                <ListBox.Item
-                  id="all"
-                  textValue="Difficulty Level"
-                  className="text-xs font-semibold text-[#867070] rounded-lg"
-                >
-                  Difficulty Level
-                </ListBox.Item>
-                {difficulties.map((diff) => (
-                  <ListBox.Item
-                    key={diff}
-                    id={diff}
-                    textValue={diff}
-                    className="text-xs text-[#867070] rounded-lg hover:bg-[#86707010]"
-                  >
-                    {diff}
-                  </ListBox.Item>
-                ))}
-              </ListBox>
-            </Select.Popover>
-          </Select>
-
-          {/* Reset Button */}
-          {filters.search && (
-            <button
-              onClick={handleReset}
-              className="flex items-center gap-1.5 ml-2 text-xs font-semibold bg-[#86707010] px-3 py-2 rounded-lg cursor-pointer hover:bg-[#86707020] text-[#635252] hover:text-[#4A3B3B] transition-all duration-150"
+          <div className="flex flex-col md:flex-row flex-1 items-center gap-3">
+            <Select
+              className="w-full lg:max-w-[210px]"
+              placeholder="All Categories"
+              selectedKeys={filters.category ? [filters.category] : ["all"]}
+              onSelectionChange={(keys) => {
+                const value = keys.split(" ")[0].toLowerCase();
+                updateFilters({
+                  category: value === "all" ? "" : value,
+                });
+              }}
             >
-              <IoRefreshOutline className="text-sm stroke-[3]" />
-              <span>Reset Search</span>
-            </button>
-          )}
+              <Select.Trigger className="w-full flex items-center justify-between bg-[#E4D5D5] hover:bg-[#DED0D0] border border-[#86707020] rounded-xl h-10 text-xs font-semibold text-[#635252] px-4 shadow-none transition-all cursor-pointer">
+                <Select.Value />
+                <Select.Indicator />
+              </Select.Trigger>
+
+              <Select.Popover className="border border-[#86707015] bg-white rounded-xl shadow-xl overflow-hidden p-1 w-[var(--trigger-width)] sm:max-w-[280px]">
+                <ListBox className="max-h-[240px] overflow-y-auto outline-none pr-1 scrollbar-thin scrollbar-thumb-[#86707040] scrollbar-track-transparent">
+                  <ListBox.Item
+                    id="all"
+                    textValue="All Categories"
+                    className="text-xs font-bold text-[#635252] rounded-lg p-2.5 my-0.5 cursor-pointer hover:bg-[#86707015] focus:bg-[#86707015] outline-none transition-colors"
+                  >
+                    All Categories
+                  </ListBox.Item>
+
+                  {categories.map((cat) => (
+                    <ListBox.Item
+                      key={cat}
+                      id={cat}
+                      textValue={cat}
+                      className="text-xs font-medium text-[#867070] rounded-lg p-2.5 my-0.5 cursor-pointer hover:bg-[#86707010] focus:bg-[#86707010] outline-none transition-colors"
+                    >
+                      {cat}
+                    </ListBox.Item>
+                  ))}
+                </ListBox>
+              </Select.Popover>
+            </Select>
+
+            {/* AI Tool Filter */}
+            <Select
+              className="w-full lg:max-w-[140px]"
+              placeholder="All AI Tools"
+              selectedKeys={filters.aiTool ? [filters.aiTool] : ["all"]}
+              onSelectionChange={(keys) => {
+                const value = keys.toLowerCase();
+                updateFilters({
+                  aiTool: value === "all" ? "" : value,
+                });
+              }}
+            >
+              <Select.Trigger className="bg-[#E4D5D5] hover:bg-[#DED0D0] border border-[#86707020] rounded-lg h-10 text-xs font-semibold text-[#635252] px-4 shadow-none transition-all">
+                <Select.Value />
+                <Select.Indicator />
+              </Select.Trigger>
+              <Select.Popover className="border border-[#86707015] bg-white rounded-xl shadow-xl overflow-hidden p-1">
+                <ListBox>
+                  <ListBox.Item
+                    id="all"
+                    textValue="All AI Tools"
+                    className="text-xs font-semibold text-[#867070] rounded-lg"
+                  >
+                    All AI Tools
+                  </ListBox.Item>
+                  {aiTools.map((tool) => (
+                    <ListBox.Item
+                      key={tool}
+                      id={tool}
+                      textValue={tool}
+                      className="text-xs text-[#867070] rounded-lg hover:bg-[#86707010]"
+                    >
+                      {tool}
+                    </ListBox.Item>
+                  ))}
+                </ListBox>
+              </Select.Popover>
+            </Select>
+
+            {/* Difficulty Filter */}
+            <Select
+              className="w-full lg:max-w-[140px]"
+              placeholder="Difficulty Level"
+              selectedKeys={filters.difficulty ? [filters.difficulty] : ["all"]}
+              onSelectionChange={(keys) => {
+                const value = keys.toLowerCase();
+                updateFilters({ difficulty: value === "all" ? "" : value });
+              }}
+            >
+              <Select.Trigger className="bg-[#E4D5D5] hover:bg-[#DED0D0] border border-[#86707020] rounded-lg h-10 text-xs font-semibold text-[#635252] px-4 shadow-none transition-all">
+                <Select.Value />
+                <Select.Indicator />
+              </Select.Trigger>
+              <Select.Popover className="border border-[#86707015] bg-white rounded-xl shadow-xl overflow-hidden p-1">
+                <ListBox>
+                  <ListBox.Item
+                    id="all"
+                    textValue="Difficulty Level"
+                    className="text-xs font-semibold text-[#867070] rounded-lg"
+                  >
+                    Difficulty Level
+                  </ListBox.Item>
+                  {difficulties.map((diff) => (
+                    <ListBox.Item
+                      key={diff}
+                      id={diff}
+                      textValue={diff}
+                      className="text-xs text-[#867070] rounded-lg hover:bg-[#86707010]"
+                    >
+                      {diff}
+                    </ListBox.Item>
+                  ))}
+                </ListBox>
+              </Select.Popover>
+            </Select>
+          </div>
+
+          {/* Sorting */}
+          <div className="flex justify-center gap-3 px-5 py-3 bg-[#ECDFDF] shadow-sm rounded-xl">
+            {sorting.map((s) => (
+              <button
+                key={s}
+                onClick={() => updateFilters({ sort: s })}
+                className={`px-4 py-2 rounded-lg text-xs font-bold capitalize cursor-pointer hover:scale-105 transition-all duration-200 ${
+                  filters.sort === s
+                    ? "bg-[#867070] text-white"
+                    : "bg-white/40 text-[#867070]"
+                }`}
+              >
+                {s}
+              </button>
+            ))}
+
+            {/* Clear All Filters */}
+            {(filters.search ||
+              filters.category ||
+              filters.aiTool ||
+              filters.difficulty) && (
+              <button
+                onClick={handleReset}
+                className="flex items-center gap-1.5 ml-2 text-xs font-semibold bg-[#86707020] px-3 py-2 rounded-lg cursor-pointer hover:bg-[#86707030] text-[#635252] hover:text-[#4A3B3B] transition-all duration-200"
+              >
+                <IoRefreshOutline className="text-sm" />
+                <span>Reset Filters</span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -242,11 +288,16 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
       )}
 
       {/* Pagination */}
-      {(
+      {
         <div className="flex justify-center mt-4 p-4 bg-[#86707005] border border-[#86707015] rounded-2xl">
           <Pagination className="w-full flex flex-col md:flex-row justify-between items-center gap-4 text-[#867070]">
             <Pagination.Summary className="text-sm font-medium text-[#867070aa]">
-              Showing <span className="font-bold text-[#867070]">{startItem}-{endItem}</span> of <span className="font-bold text-[#867070]">{totalItems}</span> results
+              Showing{" "}
+              <span className="font-bold text-[#867070]">
+                {startItem}-{endItem}
+              </span>{" "}
+              of <span className="font-bold text-[#867070]">{totalItems}</span>{" "}
+              results
             </Pagination.Summary>
 
             <Pagination.Content className="flex items-center gap-1 bg-white/40 backdrop-blur-sm p-1.5 rounded-xl border border-[#86707010]">
@@ -276,7 +327,7 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
                       {p}
                     </Pagination.Link>
                   </Pagination.Item>
-                )
+                ),
               )}
 
               <Pagination.Item>
@@ -292,7 +343,7 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
             </Pagination.Content>
           </Pagination>
         </div>
-      )}
+      }
     </div>
   );
 };
