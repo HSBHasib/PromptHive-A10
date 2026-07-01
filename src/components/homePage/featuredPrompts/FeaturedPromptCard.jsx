@@ -11,7 +11,7 @@ import {
   HiOutlineLockClosed,
 } from "react-icons/hi2";
 
-const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
+const FeaturedPromptCard = ({ prompt, user, idx }) => {
   const {
     title,
     description,
@@ -131,7 +131,7 @@ const FeaturedPromptCard = ({ prompt, user, isUserLoggedIn, idx }) => {
                 <Avatar className="w-9 h-9 rounded-full border border-[#86707030] bg-[#86707010] flex-shrink-0 text-[11px] font-bold text-[#867070]">
                   {creator?.image && (
                     <Avatar.Image
-                      src={creator.image}
+                      src={creator.image || "/"}
                       alt={creator.name || "User Avatar"}
                       className="object-cover w-full h-full"
                     />

@@ -3,8 +3,7 @@ import TopCreatorContent from "./TopCreatorContent";
 import { getTopCreator } from "@/lib/api/topCreators";
 
 const TopCreators = async () => {
-  const topCreators = await getTopCreator();
-
+  const topCreators = await getTopCreator();  
   return (
     <div className="pb-15 px-6 w-full">
       <div className="max-w-7xl mx-auto flex flex-col gap-12">

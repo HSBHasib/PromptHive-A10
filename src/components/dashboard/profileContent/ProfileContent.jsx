@@ -4,6 +4,8 @@ import React from "react";
 import { LuGem, LuCheck } from "react-icons/lu";
 
 const ProfileContent = ({ user, prompts }) => {
+  const isCreator = user?.role === "creator";
+
   const approvedPromptsCount =
     prompts?.filter((p) => p.status === "approved").length || 0;
 
@@ -74,7 +76,15 @@ const ProfileContent = ({ user, prompts }) => {
       </div>
 
       {/* Conditional Plan Section */}
-      {!isPro ? (
+      {isCreator ? (
+        <div className="p-4 bg-emerald-100/50 border border-emerald-200 rounded-xl flex items-center gap-3 text-emerald-800">
+          <LuCheck size={20} />
+          <span className="font-bold text-sm">
+            Your are a creator, Lifetime All Access - Enjoy complete access to
+            all Prompt Marketplace items!
+          </span>
+        </div>
+      ) : !isPro ? (
         <div className="p-6 bg-[#867070] rounded-xl flex items-center justify-between shadow-lg">
           <div>
             <h3 className="text-white font-bold text-lg flex items-center gap-2">
@@ -105,4 +115,3 @@ const ProfileContent = ({ user, prompts }) => {
 };
 
 export default ProfileContent;
-

@@ -8,7 +8,7 @@ const AddPromptPage = async () => {
   const user = await getUserSession();
   const plan = await getPlans(user?.plan);
   const { total } = await getPrompts(`userId=${user?.id}`);
-
+  
   return (
     <div>
       <AddPromptContent user={user} planArr={plan} currentPrompts={total || 0} />

@@ -1,6 +1,5 @@
 import React from "react";
 import { getPrompts } from "@/lib/api/prompts";
-import { getUserSession } from "@/lib/core/session";
 import { getUsers } from "@/lib/api/users";
 import AllPromptsContent from "@/components/allPrompts/AllPromptsContent";
 
@@ -9,7 +8,6 @@ const AllPromptsPage = async ({ searchParams }) => {
   const querySearch = new URLSearchParams(resolvedParams);
   const queryString = querySearch.toString();
   
-  const userSession = await getUserSession();
   const response = await getPrompts(queryString);
   const { data: users } = (await getUsers()) || [];
   
@@ -40,7 +38,6 @@ const AllPromptsPage = async ({ searchParams }) => {
         <AllPromptsContent
           prompts={prompts}
           users={users}
-          isUserLoggedIn={!!userSession}
           filters={filters}
         />
       </div>

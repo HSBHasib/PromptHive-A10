@@ -19,6 +19,7 @@ import { FiUsers } from "react-icons/fi";
 import { LuLayoutDashboard, LuLogOut } from "react-icons/lu";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+import Logo from "@/components/logo/logo";
 
 export default function DashboardSideBar() {
   const { data: session, isPending } = authClient.useSession();
@@ -134,8 +135,8 @@ export default function DashboardSideBar() {
           href="/"
           className="flex items-center transition-opacity hover:opacity-90"
         >
-          <h2 className="text-xl font-bold tracking-tight text-[#867070]">
-            PromptHive
+          <h2 className="text-xl font-bold tracking-tight text-[#867070] flex items-center gap-1">
+            <Logo className="w-5 h-5" /> PromptHive
           </h2>
         </Link>
       </div>
@@ -251,7 +252,11 @@ export default function DashboardSideBar() {
           </Drawer>
 
           <span className="text-base font-bold text-[#867070] tracking-tight">
-            <Link href="/">PromptHive</Link>
+            <Link href="/">
+              <span className="flex items-center gap-1">
+                <Logo className="w-5 h-5" /> PromptHive
+              </span>
+            </Link>
           </span>
         </div>
 

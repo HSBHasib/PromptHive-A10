@@ -15,7 +15,7 @@ const CreatorPromptsData = async ({ searchParams }) => {
   const queryObj = {
     userId: userId,
     page: currentPage,
-    limit: "4",
+    limit: "8",
   };
 
   const queryString = new URLSearchParams(queryObj).toString();

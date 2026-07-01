@@ -8,6 +8,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
+import { HiOutlineSparkles } from "react-icons/hi";
+import Logo from "@/components/logo/logo";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,7 +43,7 @@ const Navbar = () => {
 
   // Dashbaord Links based on role
   const dashboardLinks = {
-    [role] : `/dashboard/${role}/profile`
+    [role]: `/dashboard/${role}/profile`,
   };
 
   if (user?.email && !isBlocked) {
@@ -55,7 +57,8 @@ const Navbar = () => {
     <div className="bg-[#F5EBEB] border-b border-[#86707020] px-6 relative">
       <nav className="max-w-7xl mx-auto flex items-center justify-between h-16">
         {/* Left Side: Logo */}
-        <div className="flex items-center">
+        <div className="flex items-center gap-1">
+          <Logo className="w-6 h-6" />
           <Link
             href="/"
             className="flex items-center transition-opacity hover:opacity-90"

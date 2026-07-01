@@ -7,7 +7,7 @@ import FeaturedPromptCard from "../homePage/featuredPrompts/FeaturedPromptCard";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { IoRefreshOutline } from "react-icons/io5";
 
-const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
+const AllPromptsContent = ({ prompts, users, filters }) => {
   const router = useRouter();
 
   const [searchInput, setSearchInput] = useState(filters.search || "");
@@ -278,7 +278,6 @@ const AllPromptsContent = ({ prompts, users, isUserLoggedIn, filters }) => {
                 key={idx}
                 prompt={prompt}
                 user={users}
-                isUserLoggedIn={isUserLoggedIn}
                 idx={idx}
               />
             ))}

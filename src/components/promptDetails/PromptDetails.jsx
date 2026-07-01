@@ -18,8 +18,8 @@ const PromptDetails = ({ prompt, creator }) => {
       {/* Creator Info */}
       <div className="flex items-center gap-3 mb-6 p-3 bg-stone-50/90 rounded-xl">
         <Image
-          src={creator?.image}
-          alt={creator?.name}
+          src={creator?.image || "/"}
+          alt={creator?.name || "Creator"}
           width="300"
           height="300"
           className="w-12 h-12 rounded-full object-cover border-2 border-[#867070]"
@@ -96,3 +96,4 @@ const PromptDetails = ({ prompt, creator }) => {
 };
 
 export default PromptDetails;
+
