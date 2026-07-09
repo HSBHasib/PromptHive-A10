@@ -1,4 +1,4 @@
-# 🚀 PromptHive — AI Prompt Sharing & Marketplace Platform
+# PromptHive — AI Prompt Sharing & Marketplace Platform
 
 A modern full-stack AI Prompt Sharing & Marketplace platform where users can discover, create, bookmark, review, report, and manage AI prompts for tools like ChatGPT, Gemini, Claude, Midjourney, and more.
 
