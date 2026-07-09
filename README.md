@@ -251,19 +251,6 @@ During this project, I gained practical experience with:
 
 ---
 
-# 🚀 Future Improvements
-
-- Email notifications
-- AI-powered prompt recommendations
-- Prompt version history
-- Team collaboration
-- Creator verification
-- Subscription management
-- Dark/Light theme preferences
-- AI prompt collections
-
----
-
 # 🔗 Resources
 ### Live Project
 [View Live Project](https://prompt-hive-gamma.vercel.app)
