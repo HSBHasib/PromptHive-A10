@@ -84,7 +84,7 @@ The platform includes secure authentication, role-based access control, premium 
 - Lifetime Premium access
 - Premium-only prompts
 - Unlimited prompt creation
-- Premium dashboard access
+- Premium Prompts access
 
 ## 👤 User Dashboard
 - Add prompts
@@ -150,7 +150,6 @@ The platform includes secure authentication, role-based access control, premium 
 - react-hot-toast
 - recharts
 - react-icons
-- axios
 - react-hook-form
 - stripe-js
 
@@ -159,40 +158,10 @@ The platform includes secure authentication, role-based access control, premium 
 - express
 - mongodb
 - better-auth
-- jsonwebtoken
 - stripe
 - cors
 - dotenv
-- multer
 - imgbb uploader
-- cookie-parser
-
----
-
-# ⚙️ Environment Variables
-
-## Client (.env.local)
-
-```env
-NEXT_PUBLIC_API_URL=
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
-NEXT_PUBLIC_IMGBB_API_KEY=
-```
-
-## Server (.env)
-
-```env
-PORT=
-MONGODB_URI=
-BETTER_AUTH_SECRET=
-BETTER_AUTH_URL=
-JWT_SECRET=
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-STRIPE_SECRET_KEY=
-IMGBB_API_KEY=
-CLIENT_URL=
-```
 
 ---
 
