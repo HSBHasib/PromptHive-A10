@@ -208,9 +208,9 @@ Create the required `.env` files using the variables listed above.
 ---
 
 ## 4. Start the backend
-
 ```bash
-nodemon index.js // (Download nodemon - [https://www.npmjs.com/package/nodemon]) 
+nodemon index.js
+(Download nodemon - https://www.npmjs.com/package/nodemon) 
 ```
 
 ---
